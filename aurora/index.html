@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/aurora.css">
     <title>Aurora</title>
 </head>
@@ -19,28 +18,33 @@
     </header>
     <main>
         <section class="main-section">
-            Aurora lives here<br>
             <div id="container">
                 <div id="black-keys">
-                    <span class="black-keys" id="c-sharp">C#</span>
-                    <span class="black-keys" id="d-sharp">D#</span>
-                    <span class="black-keys" id="f-sharp">F#</span>
-                    <span class="black-keys" id="g-sharp">G#</span>
-                    <span class="black-keys" id="a-sharp">A#</span>
+                        <div class="black-keys-group-1">
+                        <span class="black-keys" id="c-sharp"></span>
+                        <span class="black-keys" id="d-sharp"></span>
+                    </div>
+                    <div class="black-keys-group-2">
+                        <span class="black-keys" id="f-sharp"></span>
+                        <span class="black-keys" id="g-sharp"></span>
+                        <span class="black-keys" id="a-sharp"></span>
+                </div>
                 </div>
                 <div id="white-keys">
-                    <span class="white-keys" id="c-note-1">C</span>
-                    <span class="white-keys" id="d-note">D</span>
-                    <span class="white-keys" id="e-note">E</span>
-                    <span class="white-keys" id="f-note">F</span>
-                    <span class="white-keys" id="g-note">G</span>
-                    <span class="white-keys" id="a-note">A</span>
-                    <span class="white-keys" id="b-note">B</span>
-                    <span class="white-keys" id="c-note-2">C</span>
+                    <span class="white-keys" id="c-note-1"></span>
+                    <span class="white-keys" id="d-note"></span>
+                    <span class="white-keys" id="e-note"></span>
+                    <span class="white-keys" id="f-note"></span>
+                    <span class="white-keys" id="g-note"></span>
+                    <span class="white-keys" id="a-note"></span>
+                    <span class="white-keys" id="b-note"></span>
+                    <span class="white-keys" id="c-note-2"></span>
                 </div>
-
             </div>
         </section>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+          </div>
     </main>
     <footer>
 
