@@ -1,0 +1,84 @@
+
+*{
+    box-sizing: border-box;
+}
+
+header {
+    font-family: 'Monoton', cursive;
+    font-size: 50px;
+    color: #6FFFE9;
+}
+
+body {
+    font-family: 'Electrolize', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #6FFFE9;
+    background-color: #0B132B;
+
+}
+
+#container {
+    position: absolute;
+    /* width: 100px; */
+    height: 200px;
+    border: 5px solid yellow;
+    display: inline;
+}
+
+#white-keys {
+    height: 100%;
+    width: 500px;
+    background-color: white;
+    border-right: 1px solid black;
+    float: left;
+    display: flex;
+    position: absolute;
+}
+.white-keys {
+    border: 1px solid orange;
+    height: 200px;
+    margin: 10px;
+}
+
+#black-keys {
+    position: absolute;
+    z-index: 1;
+    background: #777;
+    left: 68%;
+}
+
+.black-keys {
+    height: 65%;
+    width: 55px;
+
+}
+
+// fix white keys separately. then black. then joint.
+#g-sharp {
+    left: 50%;
+}
+
+button {
+    color: #5BC0BE;
+    border: 1px outset #5BC0BE;
+    border-radius: 3px;
+    font-family: 'Electrolize', sans-serif;
+}
+
+button:hover {
+    border: 1px inset #5BC0BE;
+}
+
+button:active {
+    transform: translateY(2px);
+}
+
+::placeholder {
+    border-radius: 3px;
+    color: #3A506B;
+    font-family: 'Electrolize', sans-serif;
+}
