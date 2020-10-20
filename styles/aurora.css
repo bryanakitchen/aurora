@@ -18,21 +18,37 @@ body {
     font-size: 20px;
     color: #6FFFE9;
     background-color: #0B132B;
+}
 
+/* main {
+    border: 1px solid yellow;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+} */
+
+.keyboard { 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #container {
-    position: absolute;
     height: 200px;
     display: inline;
+    width: 480px;
 }
 
 #white-keys {
     height: 100%;
     width: auto;
-    float: left;
+    /* float: left; */
     display: flex;
-    position: absolute;
+    /* position: absolute; */
 }
 .white-keys {
     border: 1px solid black;
@@ -52,7 +68,6 @@ body {
     display: flex;
     position: absolute;
     z-index: 1;
-    left: 68%;
 }
 
 .black-keys {
@@ -77,9 +92,6 @@ body {
 }
 
 // fix white keys separately. then black. then joint.
-#g-sharp {
-    left: 50%;
-}
 
 /* button {
     color: #5BC0BE;
@@ -105,14 +117,14 @@ button:active {
 .slidecontainer {
     width: 100%;
     position: relative;
-    right: 120px;
-    top: 85px;
+    right: 170px;
+    bottom: 115px;
 
 }
 
 .slider { 
     appearance: none;
-    width: 100%; 
+    width: 180px; 
     height: 3px; 
     background: #6FFFE9; 
     outline: none;
@@ -121,26 +133,37 @@ button:active {
     transition: opacity .2s;
     transform: rotateZ(270deg);
     // Because of transform, width and height are switched
-  }
+}
 
 
 .slider:hover {
     opacity: 1; 
-  }
-  
+}
 
-  .slider::-webkit-slider-thumb {
+
+.slider::-webkit-slider-thumb {
     appearance: none;
     width: 15px; 
     height: 40px; 
     background: #0B132B; 
     border: 1px solid #6FFFE9;
     cursor: pointer; 
-  }
-  
-  .slider::-moz-range-thumb {
+}
+
+.slider::-moz-range-thumb {
     width: 25px; 
     height: 25px; 
     background: #6FFFE9; 
     cursor: pointer; 
-  }
+}
+
+input[type="radio"]:checked + img {
+    border: 1px solid #6FFFE9;
+    border-radius: 5px;
+    transform: scale(1.1);
+}
+
+#waveforms {
+    height: 50px;
+    border: 1px solid yellow;
+}
