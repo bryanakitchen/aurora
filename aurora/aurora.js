@@ -74,14 +74,17 @@ const pitchArray = {
 };
 
 
+
+
+
 //creates a event listeners for each key
 for (let i = 0; i < keys.length; i++) {
     keys[i].addEventListener('click', (e) => {
-        //let note = new Sound(context);
-        //let now = context.currentTime;
-        //const pitchName = keys[i].value;
-        //let currentPitch = pitchArray.pitchName;
-        //e.target.value = note.play(currentPitch, now, waveform);
+        let note = new Sound(context);
+        let now = context.currentTime;
+        const pitchName = keys[i].value;
+        let currentPitch = pitchArray.pitchName;
+        e.target.value = note.play(currentPitch, now, waveform);
         console.log(keys[i].id);
     });
 }
