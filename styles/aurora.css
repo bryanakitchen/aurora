@@ -3,12 +3,6 @@
     box-sizing: border-box;
 }
 
-header {
-    font-family: 'Monoton', cursive;
-    font-size: 50px;
-    color: #6FFFE9;
-}
-
 body {
     font-family: 'Electrolize', sans-serif;
     display: flex;
@@ -81,15 +75,13 @@ body {
     margin: 0 0 0 28px;
 }
 
-// fix white keys separately. then black. then joint.
-
 /* button {
     color: #5BC0BE;
     border: 1px outset #5BC0BE;
     border-radius: 3px;
     font-family: 'Electrolize', sans-serif;
-}
-
+} */
+/* 
 button:hover {
     border: 1px inset #5BC0BE;
 }
@@ -122,7 +114,7 @@ button:active {
     -webkit-transition: .2s; 
     transition: opacity .2s;
     transform: rotateZ(270deg);
-    // Because of transform, width and height are switched
+    /* Because of transform, width and height are switched */
 }
 
 
@@ -173,3 +165,57 @@ label {
     50% { color: #6FFFE9; filter: drop-shadow(0 0 4px #6FFFE9); }
     to { color: #0B132B; filter: drop-shadow(0 0 10px #333); }
   }
+
+  header {
+    position: absolute;
+    width: 100%;
+    align-items: flex-start;
+    height: 80px;
+    top: 5px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+    right: 10px;
+}
+
+.drop-button {
+    font-family: 'Monoton', cursive;
+    font-size: 20px;
+    color: #5BC0BE;
+    background-color: #0B132B;
+    border: 1px outset #5BC0BE;
+    cursor: pointer;
+
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #0B132B;
+    font-size: 16px;
+    min-width: 180px;
+    box-shadow: 0px 5px 16px -5px #5BC0BE;
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: #5BC0BE;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #354961;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    /* border: 1px inset #5BC0BE; */
+    cursor: pointer;
+
+}

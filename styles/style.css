@@ -81,7 +81,7 @@ header {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 160px;
+    min-width: 180px;
     box-shadow: 0px 5px 16px -5px #5BC0BE;
     z-index: 1;
     right: 0;
