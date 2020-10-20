@@ -84,7 +84,7 @@ oscButton.addEventListener('click', () => {
 });
 
 // oscButton.addEventListener('mouseup', e => {
-//     e.target.value = note.stop();
+//     e.target.value = note.stop(now);
 
 // }); 
 

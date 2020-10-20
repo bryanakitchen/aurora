@@ -1,0 +1,20 @@
+
+*{
+    box-sizing: border-box;
+    background-color: #0B132B;
+}
+
+header {
+    font-family: 'Monoton', cursive;
+    font-size: 50px;
+    color: #6FFFE9;
+}
+
+body {
+    font-family: 'Electrolize', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
