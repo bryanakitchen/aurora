@@ -74,6 +74,7 @@ oscButton.addEventListener('click', () => {
     let note = new Sound(context);
     let now = context.currentTime;
     note.play(261.63, now, waveform);
+    console.log()
     //     note.play(293.66, now + 0.5);
     //     note.play(329.63, now + 1);
     //     note.play(349.23, now + 1.5);

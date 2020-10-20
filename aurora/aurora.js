@@ -82,7 +82,7 @@ for (let i = 0; i < keys.length; i++) {
         //const pitchName = keys[i].value;
         //let currentPitch = pitchArray.pitchName;
         //e.target.value = note.play(currentPitch, now, waveform);
-        console.log(keys[i].value);
+        console.log(keys[i].id);
     });
 }
 
