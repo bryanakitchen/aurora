@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/aurora.css">
+    <title>Aurora</title>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+
+        <div class="waveforms" id="soundSwitch">
+            <div id="waveforms">
+                <label>
+                    <input id="sine" type="radio" name="waveform" value="sine" checked style="display:none">
+                    <img class='image-class' src = "../assets/sine.JPG" width="100px"/>
+                </label>
+                <label>
+                    <input id="square" type="radio" name="waveform" value="square" style="display:none">
+                    <img class='image-class' src = "../assets/square.JPG" width="100px"/>
+                </label>
+                <label>
+                    <input id="triangle" type="radio" name="waveform" value="triangle" style="display:none">
+                    <img class='image-class' src = "../assets/triangle.JPG" width="100px"/>
+                </label>
+                <label>
+                    <input id="sawtooth" type="radio" name="waveform" value="sawtooth" style="display:none">
+                    <img class='image-class' src = "../assets/saw.JPG" width="100px"/>
+                </label>
+            </div>
+            <div id="mainVolume">
+                <p id="sliderText">Volume</p>
+                <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
+            </div>
+        </div>
+    </main>
+    <footer>
+    
+    </footer>
+
+    <script type="module" src="./waveforms.js"></script>
+</body>
+
+</html>
