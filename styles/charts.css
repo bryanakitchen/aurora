@@ -1,0 +1,26 @@
+
+*{
+    box-sizing: border-box;
+    background-color: #0B132B;
+}
+
+header {
+    font-family: 'Monoton', cursive;
+    font-size: 50px;
+    color: #6FFFE9;
+}
+
+body {
+    font-family: 'Monoton', cursive;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+canvas {
+    width: 75%;
+    height: 100%;
+  }
+  
