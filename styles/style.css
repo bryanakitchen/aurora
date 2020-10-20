@@ -4,11 +4,25 @@
     background-color: #0B132B;
 }
 
-header {
+.glow {
     font-family: 'Monoton', cursive;
-    font-size: 50px;
-    color: #6FFFE9;
+    font-size: 60px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40px;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
 }
+
+@-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #6FFFE9, 0 0 30px #6FFFE9, 0 0 40px #6FFFE9, 0 0 50px #6FFFE9, 0 0 60px #6FFFE9, 0 0 70px #6FFFE9;
+      }
+  }
 
 body {
     font-family: 'Electrolize', sans-serif;
@@ -28,6 +42,7 @@ button {
 
 button:hover {
     border: 1px inset #5BC0BE;
+    cursor: pointer;
 }
 
 button:active {
@@ -38,4 +53,7 @@ button:active {
     border-radius: 3px;
     color: #3A506B;
     font-family: 'Electrolize', sans-serif;
+}
+input:focus::placeholder {
+    color: transparent;
 }
