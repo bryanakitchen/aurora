@@ -42,6 +42,12 @@ body {
     border-radius: 0 0 5px 5px;
 }
 
+.white-keys:active {
+    padding: 5px inset gray;
+    box-shadow: 0 3px 1px -1px #6FFFE9;
+    filter: blur(2px);
+}
+
 #black-keys {
     display: flex;
     position: absolute;
