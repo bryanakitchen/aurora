@@ -7,7 +7,7 @@ export function saveGuest(guest) {
 
 export function getGuest() {
     const myKey = localStorage.getItem(GUEST);
-    return JSON.parse(mykey);
+    return JSON.parse(myKey);
 }
 
 const form = document.querySelector('form');

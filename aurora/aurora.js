@@ -76,7 +76,6 @@ const pitchObject = {
 let pitchModifier = 1;
 
 
-
 //creates a event listeners for each key
 for (let i = 0; i < keys.length; i++) {
     keys[i].addEventListener('click', (e) => {
