@@ -13,36 +13,65 @@ const keys = [...whiteKeys, ...blackKeys];
 
 const oscButton = document.getElementById('osc-key');
 
-class Sound {
+// class Sound {
 
-    constructor(context) {
-        this.context = context;
-    }
+//     constructor(context) {
+//         this.context = context;
+//     }
 
-    init(type) {
-        this.oscillator = this.context.createOscillator();
-        this.gainNode = this.context.createGain();
+//     init(type) {
+//         this.oscillator = this.context.createOscillator();
+//         this.gainNode = this.context.createGain();
 
-        this.oscillator.connect(this.gainNode);
-        this.gainNode.connect(this.context.destination);
-        this.oscillator.type = type;
-    }
+//         this.oscillator.connect(this.gainNode);
+//         this.gainNode.connect(this.context.destination);
+//         this.oscillator.type = type;
+//     }
 
-    play(value, time, type) {
-        this.init(type);
+//     play(value, time, type) {
+//         this.init(type);
 
-        this.oscillator.frequency.value = value;
-        this.gainNode.gain.setValueAtTime(1, this.context.currentTime);
+//         this.oscillator.frequency.value = value;
+//         this.gainNode.gain.setValueAtTime(1, this.context.currentTime);
 
-        this.oscillator.start(time);
-        this.stop(time);
-    }
+//         this.oscillator.start(time);
+//         // this.stop(time);
+//     }
 
-    stop(time) {
-        this.gainNode.gain.exponentialRampToValueAtTime(0.001, time + 1);
-        this.oscillator.stop(time + 1);
-    }
+//     stop(time) {
+//         this.gainNode.gain.exponentialRampToValueAtTime(0.001, time);
+//         this.oscillator.stop(time);
+//     }
+// }
+
+let oscillator;
+let gainNode;
+let release = .8;
+
+function init(type) {
+    oscillator = context.createOscillator();
+    gainNode = context.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(context.destination);
+    oscillator.type = type;
+    
 }
+
+
+function startSound(value, time, waveform) {
+    init(waveform);
+    oscillator.frequency.value = value;
+    gainNode.gain.setValueAtTime(1, context.currentTime);
+
+    oscillator.start(time);
+}
+
+function stopSound(time) {
+    gainNode.gain.exponentialRampToValueAtTime(0.001, time + 3);
+    oscillator.stop(time + 3);
+}
+
 
 const context = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -79,13 +108,21 @@ let pitchModifier = 1;
 
 //creates a event listeners for each key
 for (let i = 0; i < keys.length; i++) {
-    keys[i].addEventListener('click', (e) => {
-        let note = new Sound(context);
+    keys[i].addEventListener('mousedown', (e) => {
+        // let note = new Sound(context);
         let now = context.currentTime;
         let currentPitch = pitchObject[keys[i].id] * pitchModifier;
-        e.target.value = note.play(currentPitch, now, waveform);
+        e.target.value = startSound(currentPitch, now, waveform);
     });
+
+    // keys[i].addEventListener('mouseup', (e) => {
+    //     // let note = new Sound(context);
+    //     let now = context.currentTime + 1;
+    //     e.target.value = stopSound(now);
+    // });
+
 }
+
 
 let waveform = document.querySelector(':checked').value;
 //EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
