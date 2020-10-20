@@ -20,16 +20,6 @@ body {
     background-color: #0B132B;
 }
 
-/* main {
-    border: 1px solid yellow;
-    width: 500px;
-    height: 300px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-} */
-
 .keyboard { 
     display: flex;
     flex-direction: row;
@@ -158,12 +148,28 @@ button:active {
 }
 
 input[type="radio"]:checked + img {
-    border: 1px solid #6FFFE9;
+    /* border: 1px solid #6FFFE9; */
     border-radius: 5px;
     transform: scale(1.1);
+    color: #fff;
+    -webkit-animation-name: bluePulse;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
 }
 
 #waveforms {
     height: 50px;
-    border: 1px solid yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+label {
+    margin: 7px;
+}
+
+  @-webkit-keyframes bluePulse {
+    from { color: #0B132B; -webkit-box-shadow: 0 0 9px #333; }
+    50% { color: #6FFFE9; -webkit-box-shadow: 0 0 18px #6FFFE9; }
+    to { color: #0B132B; -webkit-box-shadow: 0 0 9px #333; }
+  }
