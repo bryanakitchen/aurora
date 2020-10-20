@@ -9,22 +9,22 @@ let waveform = document.querySelector(':checked').value;
 
 
 //EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
-waveformControlSine.addEventListener('click', function(event) {
+waveformControlSine.addEventListener('click', function (event) {
 
     waveform = event.target.value;
     // console.log(waveform);
 });
-waveformControlSquare.addEventListener('click', function(event) {
+waveformControlSquare.addEventListener('click', function (event) {
     waveform = event.target.value;
     // console.log(waveform);
 
 });
-waveformControlTriangle.addEventListener('click', function(event) {
+waveformControlTriangle.addEventListener('click', function (event) {
     waveform = event.target.value;
     // console.log(waveform);
 
 });
-waveformControlSawtooth.addEventListener('click', function(event) {
+waveformControlSawtooth.addEventListener('click', function (event) {
     waveform = event.target.value;
     // console.log(waveform);
 
@@ -49,7 +49,7 @@ class Sound {
 
         this.oscillator.connect(this.gainNode);
         this.gainNode.connect(this.context.destination);
-        this.oscillator.type = type ;
+        this.oscillator.type = type;
     }
 
     play(value, time, type) {
@@ -63,7 +63,7 @@ class Sound {
     }
 
     stop(time) {
-        this.gainNode.gain.exponentialRampToValueAtTime(0.001, time + 1);
+        this.gainNode.gain.exponentialRampToValueAtTime(0.05, time + 1);
         this.oscillator.stop(time + 1);
     }
 }
@@ -74,13 +74,14 @@ oscButton.addEventListener('click', () => {
     let note = new Sound(context);
     let now = context.currentTime;
     note.play(261.63, now, waveform);
-//     note.play(293.66, now + 0.5);
-//     note.play(329.63, now + 1);
-//     note.play(349.23, now + 1.5);
-//     note.play(392.00, now + 2);
-//     note.play(440.00, now + 2.5);
-//     note.play(493.88, now + 3);
-//     note.play(523.25, now + 3.5);
+    console.log()
+    //     note.play(293.66, now + 0.5);
+    //     note.play(329.63, now + 1);
+    //     note.play(349.23, now + 1.5);
+    //     note.play(392.00, now + 2);
+    //     note.play(440.00, now + 2.5);
+    //     note.play(493.88, now + 3);
+    //     note.play(523.25, now + 3.5);
 });
 
 // oscButton.addEventListener('mouseup', e => {
