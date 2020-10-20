@@ -23,38 +23,51 @@ body {
 
 #container {
     position: absolute;
-    /* width: 100px; */
     height: 200px;
-    border: 5px solid yellow;
     display: inline;
 }
 
 #white-keys {
     height: 100%;
-    width: 500px;
-    background-color: white;
-    border-right: 1px solid black;
+    width: auto;
     float: left;
     display: flex;
     position: absolute;
 }
 .white-keys {
-    border: 1px solid orange;
+    border: 1px solid black;
     height: 200px;
-    margin: 10px;
+    width: 60px;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
 }
 
 #black-keys {
+    display: flex;
     position: absolute;
     z-index: 1;
-    background: #777;
     left: 68%;
 }
 
 .black-keys {
-    height: 65%;
-    width: 55px;
+    height: 105px;
+    width: 42px;
+    display: flex;
+    align-items: start;
+    margin: 0 9px;
+    background-color: black;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 5px 1px 4px -1px gray
+}
 
+.black-keys-group-1 {
+    display: flex;
+    margin: 0 30px;
+}
+
+.black-keys-group-2 {
+    display: flex;
+    margin: 0 0 0 28px;
 }
 
 // fix white keys separately. then black. then joint.
@@ -82,3 +95,46 @@ button:active {
     color: #3A506B;
     font-family: 'Electrolize', sans-serif;
 }
+
+.slidecontainer {
+    width: 100%;
+    position: relative;
+    right: 120px;
+    top: 85px;
+
+}
+
+.slider {
+    /* -webkit-appearance: none;   */
+    appearance: none;
+    width: 100%; 
+    height: 3px; 
+    background: #6FFFE9; 
+    outline: none;
+    opacity: 0.7; 
+    -webkit-transition: .2s; 
+    transition: opacity .2s;
+    transform: rotateZ(270deg);
+  }
+
+.slider:hover {
+    opacity: 1; 
+  }
+  
+
+  .slider::-webkit-slider-thumb {
+    /* -webkit-appearance: none;  */
+    appearance: none;
+    width: 15px; /* Set a specific slider handle width */
+    height: 40px; /* Slider handle height */
+    background: #0B132B; /* Green background */
+    border: 1px solid #6FFFE9;
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #6FFFE9; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
