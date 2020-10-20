@@ -57,7 +57,7 @@ const context = new (window.AudioContext || window.webkitAudioContext)();
 // }); 
 
 //Make an array of Pitches
-const pitchArray = {
+const pitchObject = {
     'C3': 130.81,
     'Cs3': 138.59,
     'D3': 146.83,
@@ -73,7 +73,7 @@ const pitchArray = {
     'C4': 261.63,
 };
 
-
+let pitchModifier = 1;
 
 
 
@@ -82,10 +82,8 @@ for (let i = 0; i < keys.length; i++) {
     keys[i].addEventListener('click', (e) => {
         let note = new Sound(context);
         let now = context.currentTime;
-        const pitchName = keys[i].value;
-        let currentPitch = pitchArray.pitchName;
+        let currentPitch = pitchObject[keys[i].id] * pitchModifier;
         e.target.value = note.play(currentPitch, now, waveform);
-        console.log(keys[i].id);
     });
 }
 
