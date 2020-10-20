@@ -140,9 +140,7 @@ button:active {
 }
 
 input[type="radio"]:checked + img {
-    /* border: 1px solid #6FFFE9; */
-    border-radius: 5px;
-    transform: scale(1.1);
+    transform: scale(1.2);
     color: #fff;
     -webkit-animation-name: bluePulse;
     -webkit-animation-duration: 2s;
