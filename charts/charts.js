@@ -12,7 +12,7 @@ const userNotes = [
     { id: 'D#', notes: 8 },
     { id: 'E', notes: 3 },
     { id: 'F', notes: 1 },
-    { id: 'F#', notes: 0 },
+    { id: 'F#', notes: 8 },
     { id: 'G', notes: 5 },
     { id: 'G#', notes: 1 },
     { id: 'A', notes: 3 },
@@ -40,44 +40,41 @@ userNotes.forEach(item => {
 
 
 const ctx = document.getElementById('myChart').getContext('2d');
+var gradientStroke = ctx.createLinearGradient(1100, 1200, 50, 0);
+gradientStroke.addColorStop(0, '#0B132B');
+gradientStroke.addColorStop(0.2, '#322F91');
+gradientStroke.addColorStop(0.4, '#2F5191');
+gradientStroke.addColorStop(0.6, '#2F7191');
+gradientStroke.addColorStop(0.9, '#4CFFFE');
+gradientStroke.addColorStop(1, '#4CFFFE');
 new Chart(ctx, {
-    type: 'radar',
+    type: 'line',
     data: {
         labels: noteLabels,
         datasets: [{
             label: '# of Notes',
             data: notes,
-            backgroundColor: [
-                'rgba(0, 128, 128, 0.2)',
-                'rgba(0, 128, 128, 0.2)',
-                'rgba(255, 206, 128, 0.2)',
-                'rgba(75, 192, 128, 0.2)',
-                'rgba(153, 102, 128, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(0, 128, 128, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            backgroundColor: gradientStroke,
+            borderColor:               gradientStroke,
+            pointBorderColor:          gradientStroke,
+            pointBackgroundColor:      gradientStroke,
+            pointHoverBackgroundColor: gradientStroke,
+            pointHoverBorderColor:     gradientStroke,
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+    options: { animation: {
+        easing: 'easeInOutBack'
+    },
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
     }
 });
-
-
 playAgainButton.addEventListener('click', () => {
 
     localStorage.clear();   
