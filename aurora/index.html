@@ -17,7 +17,7 @@
 
     </header>
     <main>
-        <section class="main-section">
+        <section class="keyboard">
             <div id="container">
                 <div id="black-keys">
                     <div class="black-keys-group-1">
@@ -42,36 +42,35 @@
                 </div>
             </div>
         </section>
-        <div class="slidecontainer">
+        <section class="slidecontainer">
             <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-        </div>
-        <section>
+        </section>
             <div class="waveforms" id="soundSwitch">
                 <div id="waveforms">
                     <label>
                         <input id="sine" type="radio" name="waveform" value="sine" checked style="display:none">
-                        <img class='image-class' src="../assets/sine.JPG" width="100px" />
+                        <img class='image-class' src="../assets/sine.png" height="50px" />
                     </label>
                     <label>
                         <input id="square" type="radio" name="waveform" value="square" style="display:none">
-                        <img class='image-class' src="../assets/square.JPG" width="100px" />
+                        <img class='image-class' src="../assets/square.png" height="50px" />
                     </label>
                     <label>
                         <input id="triangle" type="radio" name="waveform" value="triangle" style="display:none">
-                        <img class='image-class' src="../assets/triangle.JPG" width="100px" />
+                        <img class='image-class' src="../assets/triangle.png" height="50px" />
                     </label>
                     <label>
                         <input id="sawtooth" type="radio" name="waveform" value="sawtooth" style="display:none">
-                        <img class='image-class' src="../assets/saw.JPG" width="100px" />
+                        <img class='image-class' src="../assets/saw.png" height="50px" />
                     </label>
                 </div>
-                <div id="mainVolume">
+                <!-- <div id="mainVolume">
                     <p id="sliderText">Volume</p>
                     <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
-                </div>
-        </section>
-        <section>
-            <button id="osc-key">play a tone!</button>
+                </div> -->
+            <!-- <section>
+                <button id="osc-key">play a tone!</button>
+            </section> -->
         </section>
     </main>
     <footer>
