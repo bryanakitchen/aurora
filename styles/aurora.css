@@ -42,6 +42,12 @@ body {
     border-radius: 0 0 5px 5px;
 }
 
+.white-keys:active {
+    padding: 5px inset gray;
+    box-shadow: 0 3px 1px -1px #6FFFE9;
+    filter: blur(2px);
+}
+
 #black-keys {
     display: flex;
     position: absolute;
@@ -75,7 +81,7 @@ body {
     left: 50%;
 }
 
-button {
+/* button {
     color: #5BC0BE;
     border: 1px outset #5BC0BE;
     border-radius: 3px;
@@ -88,7 +94,7 @@ button:hover {
 
 button:active {
     transform: translateY(2px);
-}
+} */
 
 ::placeholder {
     border-radius: 3px;
@@ -104,8 +110,7 @@ button:active {
 
 }
 
-.slider {
-    /* -webkit-appearance: none;   */
+.slider { 
     appearance: none;
     width: 100%; 
     height: 3px; 
@@ -115,7 +120,9 @@ button:active {
     -webkit-transition: .2s; 
     transition: opacity .2s;
     transform: rotateZ(270deg);
+    // Because of transform, width and height are switched
   }
+
 
 .slider:hover {
     opacity: 1; 
@@ -123,18 +130,17 @@ button:active {
   
 
   .slider::-webkit-slider-thumb {
-    /* -webkit-appearance: none;  */
     appearance: none;
-    width: 15px; /* Set a specific slider handle width */
-    height: 40px; /* Slider handle height */
-    background: #0B132B; /* Green background */
+    width: 15px; 
+    height: 40px; 
+    background: #0B132B; 
     border: 1px solid #6FFFE9;
-    cursor: pointer; /* Cursor on hover */
+    cursor: pointer; 
   }
   
   .slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #6FFFE9; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+    width: 25px; 
+    height: 25px; 
+    background: #6FFFE9; 
+    cursor: pointer; 
   }
