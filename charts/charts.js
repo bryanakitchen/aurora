@@ -1,41 +1,28 @@
 /* eslint-disable no-undef */
 
 //LOCALSTORAGE DATA
-// const notesArray = JSON.parse(localStorage.getItem('notes'));
-const playAgainButton = document.getElementById('play-again-button');
+const notesArray = JSON.parse(window.localStorage.getItem('NOTES'));
+// const playAgainButton = document.getElementById('play-again-button');
+console.log(notesArray)
 
-//HARDCODED DATA  
-const userNotes = [
-    { id: 'C', notes: 3 },
-    { id: 'C#', notes: 5 },
-    { id: 'D', notes: 7 },
-    { id: 'D#', notes: 8 },
-    { id: 'E', notes: 3 },
-    { id: 'F', notes: 1 },
-    { id: 'F#', notes: 8 },
-    { id: 'G', notes: 5 },
-    { id: 'G#', notes: 1 },
-    { id: 'A', notes: 3 },
-    { id: 'A#', notes: 2 },
-    { id: 'B', notes: 9 },
-];
 
-const notes = [];
-const noteLabels = [];
+const notes = notesArray.map(note => note.count);
+const noteLabels = notesArray.map(note => note.id);
+
 
 //HARDCODED DATA LOOP
-userNotes.forEach(item => {
-    notes.push(item.notes);
-    noteLabels.push(item.id);
-});
+// userNotes.forEach(item => {
+//     notes.push(item.notes);
+//     noteLabels.push(item.id);
+// });
 
-//LOCAL STORAGE USER DATA LOOP
+// LOCAL STORAGE USER DATA LOOP
 // for (let i = 0; i < notesArray.length; i++) {
 //     const notesItem = notesArray[i];
-//     const label = notesItem.id;
-//     const noteData = notesItem.notes;
-//     notes.push(noteData);
-//     noteLabels.push(label);
+    // const label = notesItem.id;
+    // const noteData = notesItem.notes;
+    // notes.push(noteData);
+    // noteLabels.push(label);
 // }
 
 
@@ -52,7 +39,7 @@ new Chart(ctx, {
     data: {
         labels: noteLabels,
         datasets: [{
-            label: '# of Notes',
+            label: '# of Notes Played',
             data: notes,
             backgroundColor: gradientStroke,
             borderColor:               gradientStroke,
@@ -75,9 +62,9 @@ new Chart(ctx, {
     }
     }
 });
-playAgainButton.addEventListener('click', () => {
+// playAgainButton.addEventListener('click', () => {
 
-    localStorage.clear();   
-    window.location = '../aurora/index.html';
-});
+//     localStorage.clear();   
+//     window.location = '../aurora/index.html';
+// });
 
