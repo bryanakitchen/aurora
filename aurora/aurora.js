@@ -1,4 +1,6 @@
 import { addNewNote, pitchObject } from '../utils.js';
+import { setInLocalStorage } from '../app.js';
+
 //KEYS Event Listenters
 const whiteKeys = document.querySelectorAll('.white-keys');
 const blackKeys = document.querySelectorAll('.black-keys');
@@ -56,8 +58,12 @@ for (let i = 0; i < keys.length; i++) {
 
         let activeKey = e.target.getAttribute('id');
 
-        const test1 = addNewNote(resultsArray, activeKey);
+        addNewNote(resultsArray, activeKey);
+
+        setInLocalStorage('NOTES', resultsArray);
+
         // push
+
     });
 
     keys[i].addEventListener('mouseup', (e) => {
