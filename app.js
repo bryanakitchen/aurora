@@ -27,7 +27,7 @@ form.addEventListener('submit', (e) => {
 
     const guest = {
         name: data.get('name')
-        notes: {};
+        // notes: {};
     };
 
     saveGuest(guest);
