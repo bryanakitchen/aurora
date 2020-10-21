@@ -1,5 +1,5 @@
-import { addNewNote, pitchObject } from '../utils.js';
-import { setInLocalStorage } from '../app.js';
+import { addNewNote, pitchObject, setInLocalStorage } from '../utils.js';
+//import { setInLocalStorage } from '../app.js';
 
 //KEYS Event Listenters
 const whiteKeys = document.querySelectorAll('.white-keys');
@@ -22,11 +22,11 @@ let release = .8;
 function init(type) {
     oscillator = context.createOscillator();
     gainNode = context.createGain();
-    
+
     oscillator.connect(gainNode);
     gainNode.connect(context.destination);
     oscillator.type = type;
-    
+
 }
 
 function startSound(value, time, waveform) {
@@ -45,12 +45,8 @@ function stopSound(time) {
 const context = new (window.AudioContext || window.webkitAudioContext)();
 
 let pitchModifier = 1;
-<<<<<<< HEAD
-
-=======
 let resultsArray = [];
 let songArray = [];
->>>>>>> 29d8a44b0b9fcb7ab5bc6936dccb044a8f01f423
 
 //creates a event listeners for each key
 for (let i = 0; i < keys.length; i++) {

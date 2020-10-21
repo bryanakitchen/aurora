@@ -73,7 +73,7 @@ export const notesData = [
 export function findById(someArray, someId) {
     for (let i = 0; i < someArray.length; i++) {
         const item = someArray[i];
-        
+
         if (item.id === someId) {
             return item;
         }
@@ -84,19 +84,30 @@ export function addNewNote(someArray, someId) {
     let result = findById(someArray, someId);
     if (result) {
         result.count++;
-    } else {     
+    } else {
         let theNote = findById(notesData, someId);
         const newNote = {
             id: theNote.id,
             note: theNote.note,
             count: 1,
         };
-        someArray.push(newNote); 
+        someArray.push(newNote);
     }
     return someArray;
 
 }
 
+const GUEST = 'GUEST';
+
+export function setInLocalStorage(key, value) {
+    const stringyItem = JSON.stringify(value);
+    localStorage.setItem(key, stringyItem);
+}
+
+export function getLocalStorage() {
+    const myKey = localStorage.getItem(GUEST);
+    return JSON.parse(myKey);
+}
 
 // export function addInitialKey(someArray, someId) {
 //     const result = findById(notesData, someId);
