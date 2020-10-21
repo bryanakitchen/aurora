@@ -5,9 +5,17 @@ export function saveGuest(guest) {
     localStorage.setItem(GUEST, stringyGuest);
 }
 
+// export function setInLocalStorage(key, value) {
+//     const stringyItem = JSON.stringify(value);
+
+//     localStorage.setItem(key, stringyItem);
+
+//     return stringyItem;
+// }
+
 export function getGuest() {
     const myKey = localStorage.getItem(GUEST);
-    return JSON.parse(mykey);
+    return JSON.parse(myKey);
 }
 
 const form = document.querySelector('form');
@@ -19,6 +27,7 @@ form.addEventListener('submit', (e) => {
 
     const guest = {
         name: data.get('name')
+        notes: {};
     };
 
     saveGuest(guest);
