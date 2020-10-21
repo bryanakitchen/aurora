@@ -24,7 +24,7 @@ body {
     align-items: center;
     border: 2px solid black;
     border-radius: 5px;
-    box-shadow: 0 1px 20px 3px grey;
+    box-shadow: 0 1px 30px 4px grey;
     background-color: #0B132B;
 }
 
@@ -33,8 +33,8 @@ body {
     height: 51px;
     position: relative;
     background-image: url('../assets/aurora.jpg');
-    opacity: .7;
-    background-size: 140%;
+    opacity: .6;
+    background-size: 160%;
     border-radius: 5px 5px 0 0;
     box-shadow: 0 6px 3px grey;
     background-color: #0B132B;
@@ -44,7 +44,31 @@ body {
     height: 220px;
     display: inline;
     width: 480px;
-    border-radius: 5px;;
+    border-radius: 5px;
+}
+
+.keyboard {
+    -webkit-animation-name: blueGlow;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.keyboard:active {
+    -webkit-animation-name: keyDownGlow;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes keyDownGlow {
+    from { color: #0B132B; filter: drop-shadow(0 0 10px #333); }
+    50% { color: #6FFFE9; filter: drop-shadow(1px 1px 5px #6FFFE9); }
+    to { color: #0B132B; filter: drop-shadow(0 0 10px #333); }
+}
+
+@-webkit-keyframes blueGlow {
+    from { color: #0B132B; filter: drop-shadow(0 0 5px #333); }
+    50% { color: #6FFFE9; filter: drop-shadow(2px 2px 8px #476385); }
+    to { color: #0B132B; filter: drop-shadow(0 0 5px #333); }
 }
 
 #white-keys {
@@ -292,3 +316,4 @@ header {
     display: block;
     cursor: pointer;
 }
+
