@@ -21,6 +21,7 @@ const context = new (window.AudioContext || window.webkitAudioContext)();
 
 //PATHING: Makes a global state for master gain and analyser
 const masterGainNode = context.createGain();
+// other fancy nodes could go here
 const analyserNode = context.createAnalyser();
 
 //MASTER OUTPUT ROUTING (GOES FROM INTERNAL)
@@ -31,7 +32,7 @@ masterGainNode.connect(context.destination);
 //creates variables to be used in the following functions
 let oscillator;
 let gainNode;
-let release = .8;
+let release = .8; // keep for now
 
 // CREATES OSCILLATOR AND SETS UP ROUTING FROM WITHIN EACH OSCILLATOR NOTE EVENT
 function init(type) {
@@ -42,19 +43,23 @@ function init(type) {
     gainNode.connect(analyserNode);
     oscillator.type = type;
 }
+
 // STARTS OSCILLATOR WITH INTERNAL GAIN PRESETS (STARTS @ 1=full)
 function startSound(value, time, waveform) {
     init(waveform);
     oscillator.frequency.value = value;
     gainNode.gain.setValueAtTime(1, context.currentTime);
-
     oscillator.start(time);
 }
+
 // STOPS OSCILLATOR WITH BUILT_IN FADEOUT
 //FADEOUT CAN BE MODIFED (release) [STRETCH GOAL]
 function stopSound(time) {
     gainNode.gain.setTargetAtTime(0, time, 0.015);
 }
+
+//THREE new funtions
+//discoInit, startDisco stopDIsco (stretch)
 
 // CREATES OBJECTS TO BE USED IN EACH KEYBOARD EVENTLISTENER
 let pitchModifier = 1; // (STRETCH) CAN BE AN OCTAVE SWITCHER BY MULTIPLYING
@@ -64,10 +69,15 @@ let resultsArray = [];
 for (let i = 0; i < keys.length; i++) {
     keys[i].addEventListener('mousedown', (e) => {
         let now = context.currentTime;
+
+        //if 5th radio is checked
+        //e.target.value WILL go to function that starts audiobuffer node
+        //let activeKey = e.target.getAttribute('id');
+        //else do what's below
         let currentPitch = pitchObject[keys[i].id] * pitchModifier;
         e.target.value = startSound(currentPitch, now, waveform);
         let activeKey = e.target.getAttribute('id');
-
+        // else statement would end here
         // SENDS NOTE COUNT TO localSTORAGE
         addNewNote(resultsArray, activeKey);
         setInLocalStorage('NOTES', resultsArray);
@@ -92,15 +102,14 @@ let waveform = document.querySelector(':checked').value;
 waveformControlSine.addEventListener('click', function (event) {
     waveform = event.target.value;
 });
-
 waveformControlSquare.addEventListener('click', function (event) {
     waveform = event.target.value;
-});
 
+});
 waveformControlTriangle.addEventListener('click', function (event) {
     waveform = event.target.value;
-});
 
+});
 waveformControlSawtooth.addEventListener('click', function (event) {
     waveform = event.target.value;
 });
