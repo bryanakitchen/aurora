@@ -48,6 +48,11 @@ button:active {
     transform: translateY(2px);
 }
 
+input {
+    color: white;
+    font-family: 'Electrolize', sans-serif;
+}
+
 ::placeholder {
     border-radius: 3px;
     color: #3A506B;
