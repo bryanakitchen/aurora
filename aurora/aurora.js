@@ -68,8 +68,7 @@ function startSound(value, time, waveform) {
 }
 
 function stopSound(time) {
-    gainNode.gain.exponentialRampToValueAtTime(0.001, time + 3);
-    oscillator.stop(time + 3);
+    gainNode.gain.setTargetAtTime(0, time, 0.015);
 }
 
 
@@ -115,11 +114,11 @@ for (let i = 0; i < keys.length; i++) {
         e.target.value = startSound(currentPitch, now, waveform);
     });
 
-    // keys[i].addEventListener('mouseup', (e) => {
-    //     // let note = new Sound(context);
-    //     let now = context.currentTime + 1;
-    //     e.target.value = stopSound(now);
-    // });
+    keys[i].addEventListener('mouseup', (e) => {
+        // let note = new Sound(context);
+        let now = context.currentTime;
+        e.target.value = stopSound(now);
+    });
 
 }
 
