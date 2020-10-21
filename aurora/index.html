@@ -26,6 +26,7 @@
     </header>
     <main>
         <section class="keyboard">
+            <div class="border"></div>
             <div id="container">
                 <div id="black-keys">
                     <div class="black-keys-group-1">
@@ -51,35 +52,41 @@
             </div>
         </section>
         <section class="slidecontainer">
+            <img class="low-volume" src="../assets/low-volume.png" height="13px" />
             <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <img class="high-volume" src="../assets/high-volume.png" height="13px" />
         </section>
         <div class="waveforms" id="soundSwitch">
             <div id="waveforms">
-                <label>
+                <label class="sine-choice">
                     <input id="sine" type="radio" name="waveform" value="sine" checked style="display:none">
-                    <img class='image-class' src="../assets/sine.png" height="50px" />
+                    <img class="hover-layer-bottom" src="../assets/sine.png" height="50px" />
+                    <div class="hover-layer-top">
+                        <div class="hover-text">Sine</div>
+                    </div>
                 </label>
-                <label>
+                <label class="sine-choice">
                     <input id="square" type="radio" name="waveform" value="square" style="display:none">
-                    <img class='image-class' src="../assets/square.png" height="50px" />
+                    <img class="hover-layer-bottom" src="../assets/square.png" height="50px" />
+                    <div class="hover-layer-top">
+                        <div class="hover-text">Square</div>
+                    </div>
                 </label>
-                <label>
+                <label class="sine-choice">
                     <input id="triangle" type="radio" name="waveform" value="triangle" style="display:none">
-                    <img class='image-class' src="../assets/triangle.png" height="50px" />
+                    <img class="hover-layer-bottom" src="../assets/triangle.png" height="50px" />
+                    <div class="hover-layer-top">
+                        <div class="hover-text">Triangle</div>
+                    </div>
                 </label>
-                <label>
+                <label class="sine-choice">
                     <input id="sawtooth" type="radio" name="waveform" value="sawtooth" style="display:none">
-                    <img class='image-class' src="../assets/saw.png" height="50px" />
+                    <img class="hover-layer-bottom" src="../assets/saw.png" height="50px" />
+                    <div class="hover-layer-top">
+                        <div class="hover-text">Sawtooth</div>
+                    </div>
                 </label>
             </div>
-            <!-- <div id="mainVolume">
-                    <p id="sliderText">Volume</p>
-                    <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
-                </div> -->
-            <!-- <section>
-                <button id="osc-key">play a tone!</button>
-            </section> -->
-            </section>
     </main>
     <footer>
 
