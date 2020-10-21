@@ -115,11 +115,11 @@ for (let i = 0; i < keys.length; i++) {
         e.target.value = startSound(currentPitch, now, waveform);
     });
 
-    // keys[i].addEventListener('mouseup', (e) => {
-    //     // let note = new Sound(context);
-    //     let now = context.currentTime + 1;
-    //     e.target.value = stopSound(now);
-    // });
+    keys[i].addEventListener('mouseup', (e) => {
+        // let note = new Sound(context);
+        let now = context.currentTime + 1;
+        e.target.value = stopSound(now);
+    });
 
 }
 
