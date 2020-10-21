@@ -1,5 +1,5 @@
-import { addNewNote, pitchObject } from '../utils.js';
-import { setInLocalStorage } from '../app.js';
+import { addNewNote, pitchObject, setInLocalStorage } from '../utils.js';
+//import { setInLocalStorage } from '../app.js';
 
 //KEYS Event Listenters
 const whiteKeys = document.querySelectorAll('.white-keys');
@@ -22,11 +22,11 @@ let release = .8;
 function init(type) {
     oscillator = context.createOscillator();
     gainNode = context.createGain();
-    
+
     oscillator.connect(gainNode);
     gainNode.connect(context.destination);
     oscillator.type = type;
-    
+
 }
 
 function startSound(value, time, waveform) {
