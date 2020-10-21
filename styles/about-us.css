@@ -18,10 +18,6 @@ header {
     top: 5px;
 }
 
-/* main {
-    position: relative;
-} */
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -37,7 +33,6 @@ header {
     border: 1px outset #5BC0BE;
     cursor: pointer;
     border-radius: 4px;
-
 }
 
 .dropdown-content {
@@ -64,9 +59,7 @@ header {
 
 .dropdown:hover .dropdown-content {
     display: block;
-    /* border: 1px inset #5BC0BE; */
     cursor: pointer;
-
 }
 
 main {

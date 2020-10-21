@@ -1,30 +1,8 @@
 /* eslint-disable no-undef */
 
-//LOCALSTORAGE DATA
 const notesArray = JSON.parse(window.localStorage.getItem('NOTES'));
-// const playAgainButton = document.getElementById('play-again-button');
-console.log(notesArray)
-
-
 const notes = notesArray.map(note => note.count);
 const noteLabels = notesArray.map(note => note.id);
-
-
-//HARDCODED DATA LOOP
-// userNotes.forEach(item => {
-//     notes.push(item.notes);
-//     noteLabels.push(item.id);
-// });
-
-// LOCAL STORAGE USER DATA LOOP
-// for (let i = 0; i < notesArray.length; i++) {
-//     const notesItem = notesArray[i];
-    // const label = notesItem.id;
-    // const noteData = notesItem.notes;
-    // notes.push(noteData);
-    // noteLabels.push(label);
-// }
-
 
 const ctx = document.getElementById('myChart').getContext('2d');
 var gradientStroke = ctx.createLinearGradient(1100, 1200, 50, 0);
@@ -62,9 +40,3 @@ new Chart(ctx, {
     }
     }
 });
-// playAgainButton.addEventListener('click', () => {
-
-//     localStorage.clear();   
-//     window.location = '../aurora/index.html';
-// });
-

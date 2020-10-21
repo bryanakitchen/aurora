@@ -19,7 +19,6 @@ form.addEventListener('submit', (e) => {
 
     const guest = {
         name: data.get('name')
-        // notes: []
     };
 
     setInLocalStorage('GUEST', guest);

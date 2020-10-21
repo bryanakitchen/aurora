@@ -12,7 +12,6 @@ body {
     font-size: 20px;
     color: #6FFFE9;
     background-color: #0B132B;
-    /* background-image: url('../assets/background.jpeg'); */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -51,10 +50,10 @@ body {
 #white-keys {
     height: 100%;
     width: auto;
-    /* float: left; */
     display: flex;
-    /* position: absolute; */
+    cursor: pointer;
 }
+
 .white-keys {
     border: 1px solid black;
     height: 220px;
@@ -76,6 +75,7 @@ body {
     display: flex;
     position: absolute;
     z-index: 1;
+    cursor: pointer;
 }
 
 .black-keys {
@@ -134,14 +134,14 @@ body {
     -webkit-transition: .2s; 
     transition: opacity .2s;
     transform: rotateZ(270deg);
-    /* Because of transform, width and height are switched */
+    /* Because of transform, width and height are reversed */
 }
 
 
 .slider:hover {
     opacity: 1; 
+    cursor: pointer;
 }
-
 
 .slider::-webkit-slider-thumb {
     appearance: none;
@@ -290,7 +290,5 @@ header {
 
 .dropdown:hover .dropdown-content {
     display: block;
-    /* border: 1px inset #5BC0BE; */
     cursor: pointer;
-
 }

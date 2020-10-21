@@ -1,4 +1,4 @@
-//Make an array of Pitches
+//An array of Pitches
 export const pitchObject = {
     'C3': 130.81,
     'Cs3': 138.59,
@@ -108,28 +108,3 @@ export function getLocalStorage() {
     const myKey = localStorage.getItem(GUEST);
     return JSON.parse(myKey);
 }
-
-// export function addInitialKey(someArray, someId) {
-//     const result = findById(notesData, someId);
-//     const newKey = {
-//         note: result.id,
-//         count: 0,
-//     };
-//     someArray.push(newKey);
-
-//     console.log(newKey);
-// }
-
-// export function incrementCounter(someArray, someId) {
-//     let result = findById(someArray, someId);
-//     if (!result) {
-//         addInitialKey(someArray, someId);
-
-//         result = findById(someArray, someId);
-//     }
-//     result.count++;
-// }
-
-
-// upon click, push note into array
-// need save button
