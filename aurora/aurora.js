@@ -1,20 +1,21 @@
 import { addNewNote, pitchObject, setInLocalStorage } from '../utils.js';
 //import { setInLocalStorage } from '../app.js';
 
-//KEYS Event Listenters
+//KEYS DOM ELEMENTS
 const whiteKeys = document.querySelectorAll('.white-keys');
 const blackKeys = document.querySelectorAll('.black-keys');
-//Waveform Event Listeners
+//Waveform DOM ELEMENTS
 const waveformControlSine = document.getElementById('sine');
 const waveformControlSquare = document.getElementById('square');
 const waveformControlTriangle = document.getElementById('triangle');
 const waveformControlSawtooth = document.getElementById('sawtooth');
 
+//MASTER VOLUME DOM ELEMENT
+const gainControl = document.getElementById('gain-control');
+
+
 //Makes a spread that combines the keys arrays
 const keys = [...whiteKeys, ...blackKeys];
-
-//const oscButton = document.getElementById('osc-key');
-
 
 //TURNS ON AN AUDIO CONTEXT
 //SET UP AUDIO CONTEXT
@@ -22,10 +23,14 @@ const context = new (window.AudioContext || window.webkitAudioContext)();
 
 //PATHING: Makes a global state for master gain and analyser
 const masterGainNode = context.createGain();
+// other fancy nodes could go here
 const analyserNode = context.createAnalyser();
 
 //MASTER OUTPUT ROUTING (GOES FROM INTERNAL)
+
+
 analyserNode.connect(masterGainNode);
+//other things could go here
 masterGainNode.connect(context.destination);
 
 
@@ -40,7 +45,7 @@ function init(type) {
     gainNode = context.createGain();
 
     oscillator.connect(gainNode);
-    gainNode.connect(context.destination);
+    gainNode.connect(analyserNode);
     oscillator.type = type;
 
 }
@@ -84,6 +89,11 @@ for (let i = 0; i < keys.length; i++) {
     });
 
 }
+
+//EVENT LISTENER FOR GAIN (MAIN VOLUME) SLIDER
+gainControl.addEventListener('mousemove', function (e) {
+    masterGainNode.gain.setValueAtTime(e.target.value, context.currentTime);
+});
 
 //CALL WAVEFORM RADIO FROM THE DOM
 let waveform = document.querySelector(':checked').value;
