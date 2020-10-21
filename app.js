@@ -1,19 +1,11 @@
 const GUEST = 'GUEST';
 
-export function saveGuest(guest) {
-    const stringyGuest = JSON.stringify(guest);
-    localStorage.setItem(GUEST, stringyGuest);
+export function setInLocalStorage(key, value) {
+    const stringyItem = JSON.stringify(value);
+    localStorage.setItem(key, stringyItem);
 }
 
-// export function setInLocalStorage(key, value) {
-//     const stringyItem = JSON.stringify(value);
-
-//     localStorage.setItem(key, stringyItem);
-
-//     return stringyItem;
-// }
-
-export function getGuest() {
+export function getLocalStorage() {
     const myKey = localStorage.getItem(GUEST);
     return JSON.parse(myKey);
 }
@@ -27,10 +19,10 @@ form.addEventListener('submit', (e) => {
 
     const guest = {
         name: data.get('name')
-        // notes: {};
+        // notes: []
     };
 
-    saveGuest(guest);
+    setInLocalStorage('GUEST', guest);
 
     window.location.href = './aurora/index.html';
 });
