@@ -317,3 +317,46 @@ header {
     cursor: pointer;
 }
 
+.hover-layer-top-dani {
+    opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+    color: #fff;
+    background-color: #0B132B;
+    padding: 15px;
+    -moz-transition: all 0.2s ease-in-out 0s;
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-ms-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.hover-layer-top-dani:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.hover-layer-top-dani:active {
+    transform: scale(.9);
+}
+
+.hover-text-dani {
+    text-align: center;
+    font-size: .6em;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.dani-photo {
+    border-radius: 90px;
+}
