@@ -113,3 +113,9 @@ waveformControlTriangle.addEventListener('click', function (event) {
 waveformControlSawtooth.addEventListener('click', function (event) {
     waveform = event.target.value;
 });
+
+const resetButton = document.getElementById('reset');
+
+resetButton.addEventListener('click', () => {
+    window.location = './index.html';
+});
