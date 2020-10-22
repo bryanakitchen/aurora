@@ -119,3 +119,75 @@ const resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', () => {
     window.location = './index.html';
 });
+
+
+
+
+// VISUALISER LEFT
+const canvas = document.getElementById('visualiser-left');
+const ctx = canvas.getContext('2d');
+
+// SET FFT SIZE
+analyserNode.fftSize = 256;
+const bufferLength = analyserNode.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+ctx.clearRect(0, 0, 400, 150);
+
+function draw() {
+    const drawVisual = requestAnimationFrame(draw);
+    analyserNode.getByteFrequencyData(dataArray);
+    ctx.fillStyle = 'rgb(11, 19, 43)';
+    ctx.fillRect(0, 0, 400, 150);
+
+    const barWidth = (480 / bufferLength) * 2.5;
+    let barHeight;
+    let x = 0;
+
+    for (let i = 0; i < bufferLength; i++) {
+        barHeight = dataArray[i] / 2;
+
+        ctx.fillStyle = 'rgb(' + (barHeight + 10) + ',255,233)';
+        ctx.fillRect(x, 150 - barHeight, barWidth, barHeight);
+
+        x += barWidth + 1;
+    }
+}
+
+draw();
+
+
+// VISUALISER RIGHT
+const canvasRight = document.getElementById('visualiser-right');
+const ctxRight = canvasRight.getContext('2d');
+
+// SET FFT SIZE
+analyserNode.fftSize = 256;
+const bufferRight = analyserNode.frequencyBinCount;
+const dataArrayRight = new Uint8Array(bufferRight);
+
+ctxRight.clearRect(0, 0, 400, 150);
+
+function drawRight() {
+    const drawVisual = requestAnimationFrame(drawRight);
+    analyserNode.getByteFrequencyData(dataArrayRight);
+    ctxRight.fillStyle = 'rgb(11, 19, 43)';
+    ctxRight.fillRect(0, 0, 400, 150);
+
+    const barWidth = (480 / bufferRight) * 2.5;
+    let barHeight;
+    let x = 0;
+
+    for (let i = 0; i < bufferRight; i++) {
+        barHeight = dataArrayRight[i] / 2;
+
+        ctxRight.fillStyle = 'rgb(' + (barHeight + 10) + ',255,233)';
+        ctxRight.fillRect(x, 150 - barHeight, barWidth, barHeight);
+
+        x += barWidth + 1;
+    }
+}
+
+drawRight();
+
+
