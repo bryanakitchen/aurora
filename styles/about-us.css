@@ -73,9 +73,11 @@ main {
 
 .about-title {
     font-family: 'Monoton', cursive;
-    font-size: 30px;
+    font-size: 40px;
+    letter-spacing: 3px;
     color: #E4EAF1;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
+    margin-top: 20px;
 }
 
 .bio {
@@ -94,9 +96,9 @@ p {
     color: #E4EAF1;
     width: 350px;
     height: 150px;
-    padding: 20px;
+    padding: 0 20px 0 20px;
     border-radius: 20px;
-    vertical-align: center;
+    vertical-align: middle;
 }
 
 img {
