@@ -18,55 +18,55 @@ export const pitchObject = {
 export const notesData = [
     {
         id: 'C3',
-        note: 'C3',
+        note: 'C',
     },
     {
         id: 'Cs3',
-        note: 'Cs3',
+        note: 'C#',
     },
     {
         id: 'D3',
-        note: 'D3',
+        note: 'D',
     },
     {
         id: 'Ds3',
-        note: 'Ds3',
+        note: 'D#',
     },
     {
         id: 'E3',
-        note: 'E3',
+        note: 'E',
     },
     {
         id: 'F3',
-        note: 'F3',
+        note: 'F',
     },
     {
         id: 'Fs3',
-        note: 'Fs3',
+        note: 'F#',
     },
     {
         id: 'G3',
-        note: 'G3',
+        note: 'G',
     },
     {
         id: 'Gs3',
-        note: 'Gs3',
+        note: 'G#',
     },
     {
         id: 'A3',
-        note: 'A3',
+        note: 'A',
     },
     {
         id: 'As3',
-        note: 'As3',
+        note: 'A#',
     },
     {
         id: 'B3',
-        note: 'B3',
+        note: 'B',
     },
     {
         id: 'C4',
-        note: 'C4',
+        note: 'High C',
     },
 ];
 
