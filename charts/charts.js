@@ -3,9 +3,7 @@
 const notesArray = JSON.parse(window.localStorage.getItem('NOTES'));
 
 const notes = notesArray.map(note => note.count);
-const noteLabels = notesArray.map(note => note.id);
-
-
+const noteLabels = notesArray.map(note => note.note);
 
 const ctx = document.getElementById('myChart').getContext('2d');
 var gradientStroke = ctx.createLinearGradient(800, 400, 100, 100);
@@ -36,7 +34,9 @@ new Chart(ctx, {
     scales: {
         yAxes: [{
             ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                stepSize: 1,
+                min: 0
             }
         }]
     }
