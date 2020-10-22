@@ -87,7 +87,7 @@ body {
 }
 
 .white-keys:active {
-    padding: 5px inset gray;
+    box-shadow: inset 4px 4px 7px grey;
     filter: blur(1px);
 }
 
