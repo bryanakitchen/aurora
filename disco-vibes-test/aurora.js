@@ -32,7 +32,7 @@ masterGainNode.connect(context.destination);
 //creates variables to be used in the following functions
 let oscillator;
 let gainNode;
-let release = .8; // keep for now, may be useful for "release" slider
+let release = .8; // keep for now
 
 // CREATES OSCILLATOR AND SETS UP ROUTING FROM WITHIN EACH OSCILLATOR NOTE EVENT
 function init(type) {
@@ -112,10 +112,4 @@ waveformControlTriangle.addEventListener('click', function (event) {
 });
 waveformControlSawtooth.addEventListener('click', function (event) {
     waveform = event.target.value;
-});
-
-const resetButton = document.getElementById('reset');
-
-resetButton.addEventListener('click', () => {
-    window.location = './index.html';
 });
