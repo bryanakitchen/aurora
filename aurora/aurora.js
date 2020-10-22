@@ -11,6 +11,7 @@ const waveformControlSawtooth = document.getElementById('sawtooth');
 
 //MASTER VOLUME DOM ELEMENT
 const gainControl = document.getElementById('gain-control');
+const filterControl = document.getElementById('filter-control');
 
 //Makes a spread that combines the keys arrays
 const keys = [...whiteKeys, ...blackKeys];
@@ -23,8 +24,10 @@ const context = new (window.AudioContext || window.webkitAudioContext)();
 const masterGainNode = context.createGain();
 // other fancy nodes could go here
 const analyserNode = context.createAnalyser();
+const biquadFilter = context.createBiquadFilter();
 
 //MASTER OUTPUT ROUTING (GOES FROM INTERNAL)
+biquadFilter.connect(analyserNode);
 analyserNode.connect(masterGainNode);
 //other things could go here
 masterGainNode.connect(context.destination);
@@ -40,9 +43,13 @@ function init(type) {
     gainNode = context.createGain();
 
     oscillator.connect(gainNode);
-    gainNode.connect(analyserNode);
+    gainNode.connect(biquadFilter);
     oscillator.type = type;
 }
+
+// LOWPASS FILTER PRESETS
+biquadFilter.type = 'lowpass';
+biquadFilter.frequency.value = 1000;
 
 // STARTS OSCILLATOR WITH INTERNAL GAIN PRESETS (STARTS @ 1=full)
 function startSound(value, time, waveform) {
@@ -93,6 +100,12 @@ for (let i = 0; i < keys.length; i++) {
 //EVENT LISTENER FOR GAIN (MAIN VOLUME) SLIDER
 gainControl.addEventListener('mousemove', function (e) {
     masterGainNode.gain.setValueAtTime(e.target.value, context.currentTime);
+});
+
+//EVENT LISTENER FOR LOW PASS SLIDER
+filterControl.addEventListener('mousemove', function (e) {
+    biquadFilter.frequency.setValueAtTime(e.target.value, context.currentTime);
+    console.log(biquadFilter);
 });
 
 //CALL WAVEFORM RADIO FROM THE DOM

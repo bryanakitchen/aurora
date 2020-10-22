@@ -53,10 +53,13 @@
                 </div>
             </div>
         </section>
-        <section class="slidecontainer">
+        <section class="volumecontainer">
             <img class="low-volume" src="../assets/low-volume.png" height="13px" />
             <input type="range" min="0" max="1" value="0.5" step="0.05" class="slider" id="gain-control">
             <img class="high-volume" src="../assets/high-volume.png" height="13px" />
+        </section>
+        <section class="filtercontainer">
+            <input type="range" min="150" max="15000" value="5000" step="25" class="slider" id="filter-control">
         </section>
         <div class="waveforms" id="soundSwitch">
             <div id="waveforms">
