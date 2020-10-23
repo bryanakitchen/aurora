@@ -106,6 +106,7 @@ for (let i = 0; i < keys.length; i++) {
             let currentPitch = pitchObject[keys[i].id] * pitchModifier;
             e.target.value = startSound(currentPitch, now, waveform);
         }
+
         let activeKey = e.target.getAttribute('id');
         // SENDS NOTE COUNT TO localSTORAGE
         addNewNote(resultsArray, activeKey);
@@ -114,6 +115,15 @@ for (let i = 0; i < keys.length; i++) {
 
     //CREATES EVENTLISTENER TO CALL stopSound FUNCTION (mouseup)
     keys[i].addEventListener('mouseup', (e) => {
+        let now = context.currentTime;
+        if (waveform !== 'discovibes') {
+            e.target.value = stopSound(now);
+        }
+    });
+
+
+    //CREATES EVENTLISTENER TO CALL stopSound FUNCTION (mouseleave)
+    keys[i].addEventListener('mouseleave', (e) => {
         let now = context.currentTime;
         if (waveform !== 'discovibes') {
             e.target.value = stopSound(now);
@@ -279,7 +289,7 @@ drawRight();
 //     s.start(0);
 //     // attach audio source to 
 //     object.s = s;
-// }
+// }git
 
 // for (let i = 0; i < pads.length; i++) {
 //     pads[i].addEventListener('mousedown', (e) => {
