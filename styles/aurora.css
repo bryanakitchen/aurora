@@ -51,18 +51,20 @@ body {
     -webkit-animation-name: blueGlow;
     -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
 }
 
 .keyboard:active {
     -webkit-animation-name: keyDownGlow;
-    -webkit-animation-duration: 4s;
+    -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
 }
 
 @-webkit-keyframes keyDownGlow {
-    from { color: #0B132B; filter: drop-shadow(0 0 10px #333); }
+    from { color: #0B132B; filter: drop-shadow(0 0 11px #333); }
     50% { color: #6FFFE9; filter: drop-shadow(1px 1px 5px #6FFFE9); }
-    to { color: #0B132B; filter: drop-shadow(0 0 10px #333); }
+    to { color: #0B132B; filter: drop-shadow(0 0 11px #333); }
 }
 
 @-webkit-keyframes blueGlow {
