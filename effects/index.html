@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/aurora.css">
+    <title>Aurora</title>
+</head>
+
+<body>
+    <header>
+        <div class="dropdown">
+            <button class="drop-button">Menu</button>
+            <div class="dropdown-content">
+                <a href="../index.html">Home</a>
+                <a href="./index.html">Aurora Synth</a>
+                <a href="../charts/index.html">Aurora Chart</a>
+                <a href="../about-us/index.html">About the Creators</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="keyboard">
+            <div class="border"></div>
+            <div id="container" class="glow">
+                <div id="black-keys">
+                    <div class="black-keys-group-1">
+                        <span class="black-keys" id="Cs3"></span>
+                        <span class="black-keys" id="Ds3"></span>
+                    </div>
+                    <div class="black-keys-group-2">
+                        <span class="black-keys" id="Fs3"></span>
+                        <span class="black-keys" id="Gs3"></span>
+                        <span class="black-keys" id="As3"></span>
+                    </div>
+                </div>
+                <div id="white-keys">
+                    <span class="white-keys" id="C3"></span>
+                    <span class="white-keys" id="D3"></span>
+                    <span class="white-keys" id="E3"></span>
+                    <span class="white-keys" id="F3"></span>
+                    <span class="white-keys" id="G3"></span>
+                    <span class="white-keys" id="A3"></span>
+                    <span class="white-keys" id="B3"></span>
+                    <span class="white-keys" id="C4"></span>
+                </div>
+            </div>
+        </section>
+        <section class="slidecontainer">
+            <img class="low-volume" src="../assets/low-volume.png" height="13px" />
+            <input type="range" min="0" max="1" value="0.5" step="0.05" class="slider" id="gain-control">
+            <img class="high-volume" src="../assets/high-volume.png" height="13px" />
+
+        </section>
+            <!-- <section>
+                <div id="reverb">
+                    <p>Reverb</p>
+                        <label class="switch">
+                            <input type="checkbox" id="verb-toggle">
+                            <span class="slider round"></span>
+                        </label>
+            </section> -->
+
+            <h1>createDelay example</h1>
+            <div>
+              <p>Synth</p>
+              <button class="play-synth">Play</button>
+              <button class="stop-synth">Stop</button>
+              <input type="range" min="0" max="5" value="0" step="0.1">
+            </div>
+        <div class="waveforms" id="soundSwitch">
+            <div id="waveforms">
+                <label class="sine-choice">
+                    <input id="sine" type="radio" name="waveform" value="sine" checked style="display:none">
+                    <img class="hover-layer-bottom" src="../assets/sine.png" height="50px" />
+                    <div class="hover-layer-top">
+                        <div class="hover-text">Sine</div>
+                    </div>
+                </label>
+                <label class="sine-choice">
+                    <input id="square" type="radio" name="waveform" value="square" style="display:none">
+                    <img class="hover-layer-bottom" src="../assets/square.png" height="50px" />
+                    <div class="hover-layer-top">
+                        <div class="hover-text">Square</div>
+                    </div>
+                </label>
+                <label class="sine-choice">
+                    <input id="triangle" type="radio" name="waveform" value="triangle" style="display:none">
+                    <img class="hover-layer-bottom" src="../assets/triangle.png" height="50px" />
+                    <div class="hover-layer-top">
+                        <div class="hover-text">Triangle</div>
+                    </div>
+                </label>
+                <label class="sine-choice">
+                    <input id="sawtooth" type="radio" name="waveform" value="sawtooth" style="display:none">
+                    <img class="hover-layer-bottom" src="../assets/saw.png" height="50px" />
+                    <div class="hover-layer-top">
+                        <div class="hover-text">Sawtooth</div>
+                    </div>
+                </label>
+                <label class="sine-choice">
+                    <input id="dani" type="radio" name="waveform" value="sawtooth" style="display:none">
+                    <img class="hover-layer-bottom" src="../assets/question-mark.png" height="40px" />
+                    <div class="hover-layer-top-dani">
+                        <div class="hover-text-dani">
+                            <img src="../assets/Dani.png" alt="dani" class="dani-photo" width="30px">
+                        </div>
+                    </div>
+                </label>
+                <label class="reset" id="reset">
+                    <img src="../assets/stop-sign.png" class="hover-layer-bottom" width="42">
+                    <div class="hover-layer-top-reset">
+                        <div class="hover-text-reset">Reset</div>
+                    </div>
+                </label>
+            </div>
+    </main>
+    <script type="module" src="./effects.js"></script>
+</body>
+
+</html>
