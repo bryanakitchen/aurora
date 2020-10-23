@@ -57,22 +57,7 @@
             <img class="high-volume" src="../assets/high-volume.png" height="13px" />
 
         </section>
-            <!-- <section>
-                <div id="reverb">
-                    <p>Reverb</p>
-                        <label class="switch">
-                            <input type="checkbox" id="verb-toggle">
-                            <span class="slider round"></span>
-                        </label>
-            </section> -->
 
-            <h1>createDelay example</h1>
-            <div>
-              <p>Synth</p>
-              <button class="play-synth">Play</button>
-              <button class="stop-synth">Stop</button>
-              <input type="range" min="0" max="5" value="0" step="0.1">
-            </div>
         <div class="waveforms" id="soundSwitch">
             <div id="waveforms">
                 <label class="sine-choice">
@@ -119,6 +104,15 @@
                     </div>
                 </label>
             </div>
+            <div id="reverbAndLoopButtons">
+                <!-- Reverb Button -->
+                <div id="reverb">
+                    <p>Reverb</p>
+                        <label class="switch">
+                            <input type="checkbox" id="verb-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                </div>
     </main>
     <script type="module" src="./effects.js"></script>
 </body>

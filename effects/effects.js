@@ -12,7 +12,7 @@ const waveformControlSawtooth = document.getElementById('sawtooth');
 //MASTER VOLUME DOM ELEMENT
 const gainControl = document.getElementById('gain-control');
 //MASTER REVERB
-// const verbToggle = document.getElementById('verb-toggle');
+const verbToggle = document.getElementById('reverb-control');
 //Makes a spread that combines the keys arrays
 const keys = [...whiteKeys, ...blackKeys];
 
@@ -25,9 +25,9 @@ const masterGainNode = context.createGain();
 // other fancy nodes could go here
 const analyserNode = context.createAnalyser();
 // reverb node
-// const reverbNode = context.createConvolver();
+const reverbNode = context.createConvolver();
 // someOtherAudioNode -> reverb -> destination
-// reverbNode.connect(analyserNode);
+reverbNode.connect(analyserNode);
 //MASTER OUTPUT ROUTING (GOES FROM INTERNAL)
 analyserNode.connect(masterGainNode);
 
@@ -68,51 +68,72 @@ let release = .8; // keep for now, may be useful for "release" slider
 //     return convolver;
 // }
 
-// verbToggle.addEventListener('click', () => {
-//     if (verbToggle.checked) {
-//         analyserNode.connect(convolverEffect);
-//         convolverEffect.connect(masterGainNode);
-//     } else {
-//         analyserNode.disconnect(convolverEffect);
+verbToggle.addEventListener('click', () => {
+    if (verbToggle.checked) {
+        analyserNode.connect(convolverEffect);
+        convolverEffect.connect(masterGainNode);
+    } else {
+        analyserNode.disconnect(convolverEffect);
 
-//         analyserNode.connect(masterGainNode);
-//     }
-// });
+        analyserNode.connect(masterGainNode);
+    }
+});
+const getImpulseBuffer = (context, impulseUrl) => {
+    return fetch(impulseUrl)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+}
 
+// const getLiveAudio = (context) => {
+//     return navigator.mediaDevices.getUserMedia({audio: true})
+//     .then(stream => context.createMediaStreamSource(stream));
+// } 
+
+async function init(){
+  const context = new AudioContext();
+  const input = await gainNode(context)
+  const convolver = context.createConvolver()
+  //lets assume there is an mp3 file in root of our project
+  convolver.buffer = await getImpulseBuffer(context, '../assets/stonereverb.wav')
+  
+  input.connect(convolver).connect(context.destination)
+}
+
+init()
 //DELAY SHIT
 
 
-var synthDelay = context.createDelay(5.0);
-var playSynth = document.querySelector('.play-synth');
-var stopSynth = document.querySelector('.stop-synth');
-var rangeSynth = document.querySelector('.stop-synth + input');
-var destination = context.destination;
-var synthSource;
-var buffers = [];
-playSynth.onclick = function() {
-    synthSource = context.createBufferSource();
-    synthSource.buffer = buffers[2];
-    synthSource.loop = true;
-    synthSource.start();
-    synthSource.connect(synthDelay);
-    synthDelay.connect(destination);
-    this.setAttribute('disabled', 'disabled');
-};
+// var synthDelay = context.createDelay(5.0);
+// var playSynth = document.querySelector('.play-synth');
+// var stopSynth = document.querySelector('.stop-synth');
+// var rangeSynth = document.querySelector('.stop-synth + input');
+// var destination = context.destination;
+// var synthSource;
+// var buffers = [];
+// playSynth.onclick = function() {
+//     synthSource = context.createBufferSource();
+//     synthSource.buffer = buffers[2];
+//     synthSource.loop = true;
+//     synthSource.start();
+//     synthSource.connect(synthDelay);
+//     synthDelay.connect(destination);
+//     this.setAttribute('disabled', 'disabled');
+// };
 
-stopSynth.onclick = function() {
-    synthSource.disconnect(synthDelay);
-    synthDelay.disconnect(destination);
-    synthSource.stop();
-    playSynth.removeAttribute('disabled');
-};
+// stopSynth.onclick = function() {
+//     synthSource.disconnect(synthDelay);
+//     synthDelay.disconnect(destination);
+//     synthSource.stop();
+//     playSynth.removeAttribute('disabled');
+// };
 
 
-var delay1;
+// var delay1;
 
-rangeSynth.oninput = function() {
-    delay1 = rangeSynth.value;
-    synthDelay.delayTime.value = delay1;
-};
+// rangeSynth.oninput = function() {
+//     delay1 = rangeSynth.value;
+//     synthDelay.delayTime.value = delay1;
+// };
 
 
 // CREATES OSCILLATOR AND SETS UP ROUTING FROM WITHIN EACH OSCILLATOR NOTE EVENT

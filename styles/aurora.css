@@ -51,18 +51,20 @@ body {
     -webkit-animation-name: blueGlow;
     -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
 }
 
 .keyboard:active {
     -webkit-animation-name: keyDownGlow;
-    -webkit-animation-duration: 4s;
+    -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
 }
 
 @-webkit-keyframes keyDownGlow {
-    from { color: #0B132B; filter: drop-shadow(0 0 10px #333); }
+    from { color: #0B132B; filter: drop-shadow(0 0 11px #333); }
     50% { color: #6FFFE9; filter: drop-shadow(1px 1px 5px #6FFFE9); }
-    to { color: #0B132B; filter: drop-shadow(0 0 10px #333); }
+    to { color: #0B132B; filter: drop-shadow(0 0 11px #333); }
 }
 
 @-webkit-keyframes blueGlow {
@@ -129,11 +131,18 @@ body {
     font-family: 'Electrolize', sans-serif;
 }
 
-.slidecontainer {
+.volumecontainer {
     width: 100%;
     position: relative;
     right: 170px;
-    bottom: 150px;
+    bottom: 228px;
+}
+
+.filtercontainer {
+    width: 100%;
+    position: relative;
+    right: 220px;
+    bottom: 250px;
 }
 
 .low-volume {
@@ -203,7 +212,9 @@ label {
 }
 
 .waveforms {
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    position: relative;
+    bottom: 80px;
 }
 
 .sine-choice {
@@ -240,6 +251,7 @@ label {
 	-webkit-transition: all 0.2s ease-in-out 0s;
 	-ms-transition: all 0.2s ease-in-out 0s;
     transition: all 0.2s ease-in-out 0s;
+    cursor: pointer;
 }
 
 .hover-layer-top:hover {
@@ -268,6 +280,7 @@ label {
 	-webkit-transition: all 0.2s ease-in-out 0s;
 	-ms-transition: all 0.2s ease-in-out 0s;
     transition: all 0.2s ease-in-out 0s;
+    cursor: pointer;
 }
 
 .hover-layer-top:active {
@@ -378,6 +391,7 @@ header {
 	-webkit-transition: all 0.2s ease-in-out 0s;
 	-ms-transition: all 0.2s ease-in-out 0s;
     transition: all 0.2s ease-in-out 0s;
+    cursor: pointer;
 }
 
 .hover-layer-top-dani:hover {
@@ -406,6 +420,45 @@ header {
     border-radius: 90px;
 }
 
-.reset {
+canvas {
+    border-bottom: 3px solid #5BC0BE;
+    position: relative;
+    left: 40px;
+    bottom: 50px;
+}
 
-  }
+#visualiser-left {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    filter: FlipH;
+}
+
+#sample-pad {
+    height: 70px;
+    width: 300px;
+    display: flex;
+    flex-direction: row; 
+    display: block;
+    position: relative;
+    left: 520px;
+    bottom: 260px;
+}
+
+#sample-pad > div {
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    background-color: #3A506B;
+    border-radius: 10px;
+    box-shadow: 1px 1px 4px -1px white;
+    cursor: pointer;
+}
+
+#sample-pad > div:hover {
+}
+
+#sample-pad > div:active {
+    background: #6FFFE9;
+}
