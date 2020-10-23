@@ -11,6 +11,7 @@ const waveformControlSawtooth = document.getElementById('sawtooth');
 
 //MASTER VOLUME DOM ELEMENT
 const gainControl = document.getElementById('gain-control');
+const filterControl = document.getElementById('filter-control');
 
 //Makes a spread that combines the keys arrays
 const keys = [...whiteKeys, ...blackKeys];
@@ -23,8 +24,10 @@ const context = new (window.AudioContext || window.webkitAudioContext)();
 const masterGainNode = context.createGain();
 // other fancy nodes could go here
 const analyserNode = context.createAnalyser();
+const biquadFilter = context.createBiquadFilter();
 
 //MASTER OUTPUT ROUTING (GOES FROM INTERNAL)
+biquadFilter.connect(analyserNode);
 analyserNode.connect(masterGainNode);
 //other things could go here
 masterGainNode.connect(context.destination);
@@ -40,9 +43,13 @@ function init(type) {
     gainNode = context.createGain();
 
     oscillator.connect(gainNode);
-    gainNode.connect(analyserNode);
+    gainNode.connect(biquadFilter);
     oscillator.type = type;
 }
+
+// LOWPASS FILTER PRESETS
+biquadFilter.type = 'lowpass';
+biquadFilter.frequency.value = 1000;
 
 // STARTS OSCILLATOR WITH INTERNAL GAIN PRESETS (STARTS @ 1=full)
 function startSound(value, time, waveform) {
@@ -95,6 +102,12 @@ gainControl.addEventListener('mousemove', function (e) {
     masterGainNode.gain.setValueAtTime(e.target.value, context.currentTime);
 });
 
+//EVENT LISTENER FOR LOW PASS SLIDER
+filterControl.addEventListener('mousemove', function (e) {
+    biquadFilter.frequency.setValueAtTime(e.target.value, context.currentTime);
+    console.log(biquadFilter);
+});
+
 //CALL WAVEFORM RADIO FROM THE DOM
 let waveform = document.querySelector(':checked').value;
 
@@ -119,3 +132,75 @@ const resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', () => {
     window.location = './index.html';
 });
+
+
+
+
+// VISUALISER LEFT
+const canvas = document.getElementById('visualiser-left');
+const ctx = canvas.getContext('2d');
+
+// SET FFT SIZE
+analyserNode.fftSize = 256;
+const bufferLength = analyserNode.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+ctx.clearRect(0, 0, 400, 150);
+
+function draw() {
+    const drawVisual = requestAnimationFrame(draw);
+    analyserNode.getByteFrequencyData(dataArray);
+    ctx.fillStyle = 'rgb(11, 19, 43)';
+    ctx.fillRect(0, 0, 400, 150);
+
+    const barWidth = (480 / bufferLength) * 2.5;
+    let barHeight;
+    let x = 0;
+
+    for (let i = 0; i < bufferLength; i++) {
+        barHeight = dataArray[i] / 2;
+
+        ctx.fillStyle = 'rgb(' + (barHeight + 10) + ',255,233)';
+        ctx.fillRect(x, 150 - barHeight, barWidth, barHeight);
+
+        x += barWidth + 1;
+    }
+}
+
+draw();
+
+
+// VISUALISER RIGHT
+const canvasRight = document.getElementById('visualiser-right');
+const ctxRight = canvasRight.getContext('2d');
+
+// SET FFT SIZE
+analyserNode.fftSize = 256;
+const bufferRight = analyserNode.frequencyBinCount;
+const dataArrayRight = new Uint8Array(bufferRight);
+
+ctxRight.clearRect(0, 0, 400, 150);
+
+function drawRight() {
+    const drawVisual = requestAnimationFrame(drawRight);
+    analyserNode.getByteFrequencyData(dataArrayRight);
+    ctxRight.fillStyle = 'rgb(11, 19, 43)';
+    ctxRight.fillRect(0, 0, 400, 150);
+
+    const barWidth = (480 / bufferRight) * 2.5;
+    let barHeight;
+    let x = 0;
+
+    for (let i = 0; i < bufferRight; i++) {
+        barHeight = dataArrayRight[i] / 2;
+
+        ctxRight.fillStyle = 'rgb(' + (barHeight + 10) + ',255,233)';
+        ctxRight.fillRect(x, 150 - barHeight, barWidth, barHeight);
+
+        x += barWidth + 1;
+    }
+}
+
+drawRight();
+
+

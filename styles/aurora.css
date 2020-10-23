@@ -129,11 +129,18 @@ body {
     font-family: 'Electrolize', sans-serif;
 }
 
-.slidecontainer {
+.volumecontainer {
     width: 100%;
     position: relative;
     right: 170px;
     bottom: 150px;
+}
+
+.filtercontainer {
+    width: 100%;
+    position: relative;
+    left: 460px;
+    bottom: 180px;
 }
 
 .low-volume {
@@ -406,6 +413,17 @@ header {
     border-radius: 90px;
 }
 
-.reset {
+canvas {
+    border-bottom: 3px solid #5BC0BE;
+    position: relative;
+    left: 40px;
+    bottom: 50px;
+}
 
-  }
+#visualiser-left {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    filter: FlipH;
+}
