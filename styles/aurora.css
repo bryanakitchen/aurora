@@ -132,29 +132,29 @@ body {
 }
 
 .volumecontainer {
-    width: 100%;
+    width: 10%;
     position: relative;
     right: 170px;
-    bottom: 228px;
+    bottom: 232px;
 }
 
 .filtercontainer {
-    width: 100%;
+    width: 10%;
     position: relative;
-    right: 220px;
-    bottom: 250px;
+    right: 225px;
+    bottom: 279px;
 }
 
 .low-volume {
     position: relative;
-    top: 105px;
-    left: 93px;
+    top: 125px;
+    left: 77px;
 }
 
 .high-volume {
     position: relative;
-    right: 92px;
-    bottom: 96px;
+    left: 77px;
+    bottom: 115px;
 }
 
 .slider { 
