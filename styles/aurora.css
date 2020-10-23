@@ -142,7 +142,15 @@ body {
     width: 10%;
     position: relative;
     right: 225px;
-    bottom: 279px;
+    bottom: 298px;
+}
+
+.lpf {
+    position: relative;
+    bottom: 71px;
+    left: 70px;
+    font-size: .7em;
+    color: white;
 }
 
 .low-volume {
