@@ -18,7 +18,6 @@ const gainControl = document.getElementById('gain-control');
 const keys = [...whiteKeys, ...blackKeys];
 
 //TURNS ON AN AUDIO CONTEXT
-//SET UP AUDIO CONTEXT
 const context = new (window.AudioContext || window.webkitAudioContext)();
 
 //PATHING: Makes a global state for master gain and analyser
@@ -34,6 +33,8 @@ masterGainNode.connect(context.destination);
 //creates variables to be used in the following functions
 let oscillator;
 let gainNode;
+
+// variables to be used within other filter features
 let release = .8; // keep for now
 
 // CREATES OSCILLATOR AND SETS UP ROUTING FROM WITHIN EACH OSCILLATOR NOTE EVENT
@@ -55,105 +56,92 @@ function startSound(value, time, waveform) {
 }
 
 // STOPS OSCILLATOR WITH BUILT_IN FADEOUT
-//FADEOUT CAN BE MODIFED (release) [STRETCH GOAL]
+// [STRETCH GOAL] FADEOUT CAN BE MODIFED (release)
 function stopSound(time) {
     gainNode.gain.setTargetAtTime(0, time, 0.015);
 }
 
-//THREE new funtions
-//discoInit, startDisco stopDIsco (stretch)
+// PREPARES THE AUDIO FILE (called within startDisco())
+//connects URL link to ARRAY BUFFER, PREPARES to be sent to audioBufferSource
 function loadDisco(url, context) {
     return fetch(url)
         .then(res => res.arrayBuffer())
         .then(buffer => context.decodeAudioData(buffer))
+}
+//ACCEPTS A PAD ELEMENT OBJECT PARAMETER
+//"object" can be key[i]
+function startDisco(object, context, time) {
+    //CREATES A BUFFER SOURCE TO RECEIVE THE AUDIO
+    let source = context.createBufferSource();
+    // CONNECT THE BUFFER SOURCE NODE TO OUR GLOBAL AUDIO NODE CHAIN, WHICH BEINS WITH THE analyserNode
+    source.connect(analyserNode);
 
-    //ACCEPTS A PAD ELEMENT OBJECT PARAMETER
-    //"object" can be key[i]
-    function startDisco(object, context, time) {
-
-        //SET VALUE FOR NAME SO THAT IT MATCHES THE ID
-        //const divData = document.querySelector('data-sound')
-        //object.name = object.id;
-        //SETS THE SOURCE PROPERTY TO MATCH THE VALUE OF HTML (data-sound)
-        let s = context.createBufferSource();
-        s.connect(analyserNode);
-        //object.source = object.dataset.sound;
-        //loads sound file to the buffer
-        loadDisco(object.dataset.sound, context)
-
-            .then((buffer) => s.buffer = buffer)
-            .then(() => s.start(time))
-        //
-        //makes new audio source node
-        //var s = context.createBufferSource();
-        //sets node's source property
-        // s.buffer = object.buffer;
-        //connects audio to the computer's speakers --> we'll want to change this to analyser,not destination
-        //s.connect(analyserNode);
-        //plays the sound
-        //s.start(time);
-        // attach audio source to 
-        //object.s = s;
-    };
+    //SETS THE SOURCE PROPERTY TO MATCH THE VALUE OF HTML (data-sound)
+    loadDisco(object.dataset.sound, context)
+        //CONNECT THE AUDIO IN BUFFER TO the BUFFER SOURCE NODE
+        .then((buffer) => source.buffer = buffer)
+        // AND, FINALLY, PLAY THE AUDIO
+        .then(() => source.start(time))
+};
 
 
-    // CREATES OBJECTS TO BE USED IN EACH KEYBOARD EVENTLISTENER
-    let pitchModifier = 1; // (STRETCH) CAN BE AN OCTAVE SWITCHER BY MULTIPLYING
-    let resultsArray = [];
+// CREATES OBJECTS TO BE USED IN EACH KEYBOARD EVENTLISTENER
+let pitchModifier = 1; // (STRETCH) CAN BE AN OCTAVE SWITCHER BY MULTIPLYING
+let resultsArray = [];
 
-    //CREATES EVENT LISTENERS FOR EACH KEY DEPRESSED (mousedown)
-    for (let i = 0; i < keys.length; i++) {
-        keys[i].addEventListener('mousedown', (e) => {
-            let now = context.currentTime;
+//CREATES EVENT LISTENERS FOR EACH KEY DEPRESSED (mousedown)
+for (let i = 0; i < keys.length; i++) {
+    keys[i].addEventListener('mousedown', (e) => {
+        let now = context.currentTime;
 
-            if (waveform === 'discovibes') {
-                startDisco(keys[i], context, now);
-            } else {
-                let currentPitch = pitchObject[keys[i].id] * pitchModifier;
-                e.target.value = startSound(currentPitch, now, waveform);
-            }
-            let activeKey = e.target.getAttribute('id');
+        if (waveform === 'discovibes') {
+            startDisco(keys[i], context, now);
+        } else {
+            let currentPitch = pitchObject[keys[i].id] * pitchModifier;
+            e.target.value = startSound(currentPitch, now, waveform);
+        }
+        let activeKey = e.target.getAttribute('id');
 
-            // SENDS NOTE COUNT TO localSTORAGE
-            addNewNote(resultsArray, activeKey);
-            setInLocalStorage('NOTES', resultsArray);
-
-        });
-
-        //CREATES EVENTLISTENER TO CALL stopSound FUNCTION (mouseup)
-        keys[i].addEventListener('mouseup', (e) => {
-            let now = context.currentTime;
-            if (waveform !== 'discovibes') {
-                e.target.value = stopSound(now);
-            }
-        });
-    }
-
-    //EVENT LISTENER FOR GAIN (MAIN VOLUME) SLIDER
-    gainControl.addEventListener('mousemove', function (e) {
-        masterGainNode.gain.setValueAtTime(e.target.value, context.currentTime);
-    });
-
-    //CALL WAVEFORM RADIO FROM THE DOM
-    let waveform = document.querySelector(':checked').value;
-
-    //EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
-    waveformControlSine.addEventListener('click', function (event) {
-        waveform = event.target.value;
-    });
-    waveformControlSquare.addEventListener('click', function (event) {
-        waveform = event.target.value;
+        // SENDS NOTE COUNT TO localSTORAGE
+        addNewNote(resultsArray, activeKey);
+        setInLocalStorage('NOTES', resultsArray);
 
     });
-    waveformControlTriangle.addEventListener('click', function (event) {
-        waveform = event.target.value;
 
+    //CREATES EVENTLISTENER TO CALL stopSound FUNCTION (mouseup)
+    keys[i].addEventListener('mouseup', (e) => {
+        let now = context.currentTime;
+        if (waveform !== 'discovibes') {
+            e.target.value = stopSound(now);
+        }
     });
-    waveformControlSawtooth.addEventListener('click', function (event) {
-        waveform = event.target.value;
-    });
+}
 
-    waveformControlDiscovibes.addEventListener('click', function (event) {
-        waveform = event.target.value;
-        //function startDisco(object, context, time);
-    });
+//EVENT LISTENER FOR GAIN (MAIN VOLUME) SLIDER
+gainControl.addEventListener('mousemove', function (e) {
+    masterGainNode.gain.setValueAtTime(e.target.value, context.currentTime);
+});
+
+//CALL WAVEFORM RADIO FROM THE DOM
+let waveform = document.querySelector(':checked').value;
+
+//EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
+waveformControlSine.addEventListener('click', function (event) {
+    waveform = event.target.value;
+});
+waveformControlSquare.addEventListener('click', function (event) {
+    waveform = event.target.value;
+
+});
+waveformControlTriangle.addEventListener('click', function (event) {
+    waveform = event.target.value;
+
+});
+waveformControlSawtooth.addEventListener('click', function (event) {
+    waveform = event.target.value;
+});
+
+waveformControlDiscovibes.addEventListener('click', function (event) {
+    waveform = event.target.value;
+    //function startDisco(object, context, time);
+});
