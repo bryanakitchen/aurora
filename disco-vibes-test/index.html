@@ -27,7 +27,7 @@
     </header>
     <main>
         <section id="disco-vibes-pad">
-            <div id="pad1" class="pad" data-sound="../assets/dv.wav"></div>
+            <div id="pad1" class="pad" data-sound="../assets/sample1.wav"></div>
             <div id="pad2" class="pad" data-sound="../assets/sample1.wav"></div>
             <div id="pad3" class="pad" data-sound="../assets/sample2.wav""></div>
             <div id=" pad4" class="pad" data-sound="../assets/sample3.wav""></div>
@@ -37,7 +37,7 @@
                 <div id="container">
                     <div id="black-keys">
                         <div class="black-keys-group-1">
-                            <span class="black-keys" id="Cs3"></span>
+                            <span class="black-keys" id="Cs3" data-sound="../assets/dv.wav"></span>
                             <span class="black-keys" id="Ds3"></span>
                         </div>
                         <div class="black-keys-group-2">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div id="white-keys">
-                        <span class="white-keys" id="C3"></span>
+                        <span class="white-keys" id="C3" data-sound="../assets/dv.wav"></span>
                         <span class="white-keys" id="D3"></span>
                         <span class="white-keys" id="E3"></span>
                         <span class="white-keys" id="F3"></span>
@@ -93,10 +93,19 @@
                         <div class="hover-text">Sawtooth</div>
                     </div>
                 </label>
+                <label class="sine-choice">
+                    <input id="discovibes" type="radio" name="waveform" value="discovibes" style="display:none">
+                    <img class="hover-layer-bottom" src="../assets/question-mark.png" height="40px" />
+                    <div class="hover-layer-top-dani">
+                        <div class="hover-text-dani">
+                            <img src="../assets/Dani.png" alt="dani" class="dani-photo" width="30px">
+                        </div>
+                    </div>
+                </label>
             </div>
     </main>
-    <script type="module" src="./aurora.js"></script>
-    <script type="module" src="./discovibes.js"></script>
+    <script type="module" src="./auroradv.js"></script>
+    <!-- <script type="module" src="./discovibes.js"></script> -->
 </body>
 
 </html>
