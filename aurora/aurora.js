@@ -25,22 +25,18 @@ const context = new (window.AudioContext || window.webkitAudioContext)();
 
 //PATHING: Makes a global state for master gain, analyser, and filter
 const masterGainNode = context.createGain();
-// other fancy nodes could go here
 const analyserNode = context.createAnalyser();
 const biquadFilter = context.createBiquadFilter();
 
 //MASTER OUTPUT ROUTING (GOES FROM INTERNAL)
 biquadFilter.connect(masterGainNode);
 masterGainNode.connect(analyserNode);
-//other things could go here
 analyserNode.connect(context.destination);
 
 //creates variables to be used in the following functions
 let oscillator;
 let gainNode;
 
-// variables to be used within other filter features
-let release = .8; // keep for now
 // CREATES OSCILLATOR AND SETS UP ROUTING FROM WITHIN EACH OSCILLATOR NOTE EVENT
 function init(type) {
     oscillator = context.createOscillator();
@@ -64,7 +60,6 @@ function startSound(value, time, waveform) {
 }
 
 // STOPS OSCILLATOR WITH BUILT_IN FADEOUT
-// [STRETCH GOAL] FADEOUT CAN BE MODIFED (release)
 function stopSound(time) {
     gainNode.gain.setTargetAtTime(0, time, 0.015);
 }
@@ -83,7 +78,6 @@ function startDisco(object, context, time) {
     let source = context.createBufferSource();
     // CONNECT THE BUFFER SOURCE NODE TO OUR GLOBAL AUDIO NODE CHAIN, WHICH BEGINS WITH THE analyserNode
     source.connect(biquadFilter);
-
     //SETS THE SOURCE PROPERTY TO MATCH THE VALUE OF HTML (data-sound)
     loadDisco(object.dataset.sound, context)
         //CONNECT THE AUDIO IN BUFFER TO the BUFFER SOURCE NODE
@@ -92,7 +86,7 @@ function startDisco(object, context, time) {
         .then(() => source.start(time))
 };
 // CREATES OBJECTS TO BE USED IN EACH KEYBOARD EVENTLISTENER
-let pitchModifier = 1; // (STRETCH) CAN BE AN OCTAVE SWITCHER BY MULTIPLYING
+let pitchModifier = 1; 
 let resultsArray = [];
 
 //CREATES EVENT LISTENERS FOR EACH KEY DEPRESSED (mousedown)
@@ -120,7 +114,6 @@ for (let i = 0; i < keys.length; i++) {
             e.target.value = stopSound(now);
         }
     });
-
 
     //CREATES EVENTLISTENER TO CALL stopSound FUNCTION (mouseleave)
     keys[i].addEventListener('mouseleave', (e) => {
@@ -178,8 +171,6 @@ for (let i = 0; i < pads.length; i++) {
     });
 }
 
-
-
 // VISUALISER LEFT
 const canvas = document.getElementById('visualiser-left');
 const ctx = canvas.getContext('2d');
@@ -213,7 +204,6 @@ function draw() {
 
 draw();
 
-
 // VISUALISER RIGHT
 const canvasRight = document.getElementById('visualiser-right');
 const ctxRight = canvasRight.getContext('2d');
@@ -237,7 +227,7 @@ function drawRight() {
 
     for (let i = 0; i < bufferRight; i++) {
         barHeight = dataArrayRight[i] / 2;
-
+        // Colors change according to the bar height
         ctxRight.fillStyle = 'rgb(' + (barHeight + 10) + ',255,233)';
         ctxRight.fillRect(x, 150 - barHeight, barWidth, barHeight);
 
@@ -246,56 +236,3 @@ function drawRight() {
 }
 
 drawRight();
-
-
-
-
-// // SAMPLE PAD
-// const pads = document.querySelectorAll('.pad');
-// //const analyserNode = context.createAnalyser();
-// // const context = new (window.AudioContext || window.webkitAudioContext)();
-// function loadDisco(object, url, context) {
-//     var request = new XMLHttpRequest();
-//     request.open('GET', url, true);
-//     request.responseType = 'arraybuffer';
-
-//     request.onload = function () {
-//         context.decodeAudioData(request.response, function (buffer) {
-//             object.buffer = buffer;
-//         });
-//     };
-//     request.send();
-// }
-
-// function startDisco(object, context) {
-
-//     //SET VALUE FOR NAME SO THAT IT MATCHES THE ID
-//     //const divData = document.querySelector('data-sound')
-//     object.name = object.id;
-//     //SETS THE SOURCE PROPERTY TO MATCH THE VALUE OF HTML (data-sound)
-//     //do I need to chenge the () to {}?
-//     //object.source = $(object).data('sound');
-//     object.source = object.dataset.sound;
-//     //loads sound file to the buffer
-//     loadDisco(object, object.source, context);
-//     //
-//     //makes new audio source node
-//     var s = context.createBufferSource();
-//     //sets node's source property
-//     s.buffer = object.buffer;
-//     //connects audio to the computer's speakers --> we'll want to change this to analyser,not destination
-//     s.connect(analyserNode);
-//     //plays the sound
-//     s.start(0);
-//     // attach audio source to 
-//     object.s = s;
-// }git
-
-// for (let i = 0; i < pads.length; i++) {
-//     pads[i].addEventListener('mousedown', (e) => {
-//         let now = context.currentTime;
-//         startDisco(pads[i]);
-//     });
-// }
-
-
