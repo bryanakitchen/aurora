@@ -81,11 +81,12 @@ export function findById(someArray, someId) {
 }
 
 export function addNewNote(someArray, someId) {
-    let result = findById(someArray, someId);
+    // you only need let for reassignment. if you're only mutating properties, const works fine
+    const result = findById(someArray, someId);
     if (result) {
         result.count++;
     } else {
-        let theNote = findById(notesData, someId);
+        const theNote = findById(notesData, someId);
         const newNote = {
             id: theNote.id,
             note: theNote.note,

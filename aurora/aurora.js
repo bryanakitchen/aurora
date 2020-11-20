@@ -17,6 +17,7 @@ const gainControl = document.getElementById('gain-control');
 const filterControl = document.getElementById('filter-control');
 
 //Makes a spread that combines the keys arrays
+// siiiick. some career track stuff right there
 const keys = [...whiteKeys, ...blackKeys];
 
 //TURNS ON AN AUDIO CONTEXT
@@ -68,8 +69,9 @@ function stopSound(time) {
 //connects URL link to ARRAY BUFFER, PREPARES to be sent to audioBufferSource
 function loadDisco(url, context) {
     return fetch(url)
+    // i probably would have preferred to see async await instead of .then to keep the code more readable
         .then(res => res.arrayBuffer())
-        .then(buffer => context.decodeAudioData(buffer))
+        .then(buffer => context.decodeAudioData(buffer));
 }
 //ACCEPTS A PAD ELEMENT OBJECT PARAMETER
 //"object" can be key[i]
@@ -83,8 +85,8 @@ function startDisco(object, context, time) {
         //CONNECT THE AUDIO IN BUFFER TO the BUFFER SOURCE NODE
         .then((buffer) => source.buffer = buffer)
         // AND, FINALLY, PLAY THE AUDIO
-        .then(() => source.start(time))
-};
+        .then(() => source.start(time));
+}
 // CREATES OBJECTS TO BE USED IN EACH KEYBOARD EVENTLISTENER
 let pitchModifier = 1; 
 let resultsArray = [];
@@ -92,16 +94,16 @@ let resultsArray = [];
 //CREATES EVENT LISTENERS FOR EACH KEY DEPRESSED (mousedown)
 for (let i = 0; i < keys.length; i++) {
     keys[i].addEventListener('mousedown', (e) => {
-        let now = context.currentTime;
+        const now = context.currentTime;
         // CHOOSES BETWEEN OSCILLATOR OR SAMPLER SYNTHS
         if (waveform === 'discovibes') {
             startDisco(keys[i], context, now);
         } else {
-            let currentPitch = pitchObject[keys[i].id] * pitchModifier;
+            const currentPitch = pitchObject[keys[i].id] * pitchModifier;
             e.target.value = startSound(currentPitch, now, waveform);
         }
 
-        let activeKey = e.target.getAttribute('id');
+        const activeKey = e.target.getAttribute('id');
         // SENDS NOTE COUNT TO localSTORAGE
         addNewNote(resultsArray, activeKey);
         setInLocalStorage('NOTES', resultsArray);
@@ -109,7 +111,7 @@ for (let i = 0; i < keys.length; i++) {
 
     //CREATES EVENTLISTENER TO CALL stopSound FUNCTION (mouseup)
     keys[i].addEventListener('mouseup', (e) => {
-        let now = context.currentTime;
+        const now = context.currentTime;
         if (waveform !== 'discovibes') {
             e.target.value = stopSound(now);
         }
@@ -117,7 +119,7 @@ for (let i = 0; i < keys.length; i++) {
 
     //CREATES EVENTLISTENER TO CALL stopSound FUNCTION (mouseleave)
     keys[i].addEventListener('mouseleave', (e) => {
-        let now = context.currentTime;
+        const now = context.currentTime;
         if (waveform !== 'discovibes') {
             e.target.value = stopSound(now);
         }
@@ -125,36 +127,25 @@ for (let i = 0; i < keys.length; i++) {
 }
 
 //EVENT LISTENER FOR GAIN (MAIN VOLUME) SLIDER
-gainControl.addEventListener('mousemove', function (e) {
+gainControl.addEventListener('mousemove', function(e) {
     masterGainNode.gain.setValueAtTime(e.target.value, context.currentTime);
 });
 
 //EVENT LISTENER FOR LOW PASS SLIDER
-filterControl.addEventListener('mousemove', function (e) {
+filterControl.addEventListener('mousemove', function(e) {
     biquadFilter.frequency.setValueAtTime(e.target.value, context.currentTime);
 });
 
 //CALL WAVEFORM RADIO FROM THE DOM
 let waveform = document.querySelector(':checked').value;
 
+function handleWaveform(event) {
+    waveform = event.target.value;
+}
 //EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
-waveformControlSine.addEventListener('click', function (event) {
-    waveform = event.target.value;
-});
-waveformControlSquare.addEventListener('click', function (event) {
-    waveform = event.target.value;
-
-});
-waveformControlTriangle.addEventListener('click', function (event) {
-    waveform = event.target.value;
-
-});
-waveformControlSawtooth.addEventListener('click', function (event) {
-    waveform = event.target.value;
-});
-waveformControlDiscovibes.addEventListener('click', function (event) {
-    waveform = event.target.value;
-});
+// would have preferred a class that all of these shared, with a for loop that added this same even handler to all of them
+const controls = document.querySelector('.some-class-that-all-these-have');
+controls.forEach(control => control.addEventListener('click', handleWaveform));
 
 const resetButton = document.getElementById('reset');
 
@@ -215,6 +206,7 @@ const dataArrayRight = new Uint8Array(bufferRight);
 
 ctxRight.clearRect(0, 0, 400, 150);
 
+// hmmm, seems like you could have added some arguments to the draw function and reused it to apply to this case
 function drawRight() {
     const drawVisual = requestAnimationFrame(drawRight);
     analyserNode.getByteFrequencyData(dataArrayRight);
