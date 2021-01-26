@@ -8,7 +8,7 @@
 Aurora Synth is a browser synthesizer built in a 5 day sprint using pure Vanilla JavaScript, HTML, and CSS. The user has the ability to play the synthesizer solo or with a pre-recorded beat, as well as choose between the different waveforms: sine, square, triangle, and sawtooth. 
 
 
-_View via [GitHub Pages](/aurora/)._
+_View via [GitHub Pages](https://bryanakitchen.github.io/aurora/)._
 
 
 ## Support and contact details
