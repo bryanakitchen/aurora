@@ -13,7 +13,7 @@ _View via [GitHub Pages](https://bryanakitchen.github.io/aurora/)._
 
 ## Support and contact details
 
-_Questions or comments can be directed to [Andrew Bray](https://github.com/Andrew-Bray)(amichaelbray@gmail.com) , [Jena Boehm](https://github.com/jena-boehm) (boehmjena@gmail.com), [Bryana Kitchen](https://github.com/bryanakitchen) (bryanakitchen@gmail.com), [Ethan Pierce](https://github.com/jumpybuns)_
+_Questions or comments can be directed to [Andrew Bray](https://github.com/Andrew-Bray)(amichaelbray@gmail.com) , [Jena Boehm](https://github.com/jena-boehm) (boehmjena@gmail.com), [Bryana Kitchen](https://github.com/bryanakitchen) (bryanakitchen@gmail.com), [Ethan Pierce](https://github.com/jumpybuns) (ethanpiercepresents@gmail.com)_
 
 
 ## Technologies Used
