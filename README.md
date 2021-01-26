@@ -25,4 +25,4 @@ _Questions or comments can be directed to [Andrew Bray](https://github.com/Andre
 
 ### License
 
-Copyright (c) 2021 **_Andrew Bray, Jena Boehm, Bryana Kitchen, and Ethan Pierce_**
+Copyright (c) 2020 **_Andrew Bray, Jena Boehm, Bryana Kitchen, and Ethan Pierce_**
